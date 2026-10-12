@@ -40,6 +40,15 @@ A1 Idea understanding, A2 Problem definition, A3 Customer identification, A4 Exi
 
 B1 Understand what exists, B2 Determine maturity, B3 Clarify the review objective, B4 Problem-solution alignment, B5 Existing experience, B6 Feasibility and risk, B7 Strengths and gaps, B8 Prioritize improvements, B9 Next experiment.
 
+## Lifecycle lens
+
+The coaching follows the standard product management lifecycle used in ProdBOK and common PM certificate courses: Conceive, Plan, Develop, Qualify, Launch, Deliver, Retire.
+
+- Path A works inside Conceive (concept identification, then concept investigation) and hands off to Plan.
+- Path B places the work by maturity: concept = Conceive or Plan, prototype = Develop, MVP or beta = Qualify, launched = Launch or Deliver, shrinking use = Deliver or Retire. Live products also get a product lifecycle stage (introduction, growth, maturity, decline).
+- Well-known lenses come in one at a time, only when they fit, named plainly: persona, voice of the customer, SWOT, PEST, competitive analysis, TAM / SAM / SOM, problem before solution (MRD before PRD), Kano or RICE, MVP, alpha and beta plans, go or no-go, risk register, AIDA, KPIs.
+- Rhythm: after each stage, one line on the point, one line to remember, and one quick check question that becomes the next question.
+
 ## Adaptive coaching
 
 Infer experience from what the user writes, not from job titles. Ask "How much experience do you have developing products or businesses?" only if the signal is unclear and it would change how you coach.
