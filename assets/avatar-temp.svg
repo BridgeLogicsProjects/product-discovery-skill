@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- TEMPORARY avatar. Not the official BridgeLogics logo. -->
+  <rect width="512" height="512" fill="#32108B"/>
+  <g fill="#5A3FB0" opacity=".55">
+    <circle cx="96" cy="96" r="6"/><circle cx="136" cy="96" r="6"/><circle cx="176" cy="96" r="6"/>
+    <circle cx="96" cy="136" r="6"/><circle cx="136" cy="136" r="6"/><circle cx="96" cy="176" r="6"/>
+  </g>
+  <path d="M96 400 C 200 400, 220 230, 300 230 S 400 160, 420 112" fill="none" stroke="#F7F5EF" stroke-width="22" stroke-linecap="round"/>
+  <circle cx="96" cy="400" r="30" fill="#F7F5EF"/>
+  <circle cx="300" cy="230" r="34" fill="#D7FF45"/>
+  <circle cx="420" cy="112" r="30" fill="#F7F5EF"/>
+</svg>
