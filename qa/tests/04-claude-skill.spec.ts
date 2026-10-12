@@ -40,16 +40,19 @@ test('Claude Skill: test user installs the ZIP and gets a product review', async
 
   await test.step('Open Customize > Skills', async () => {
     await page.goto(URLS.claudeSkills)
-    await caption(page, '2. Customize > Skills', 'This is where the test user uploads the ZIP from GitHub.')
+    await caption(page, '2. Customize > Skills', 'Skills now live under Customize. This is where the test user uploads the ZIP from GitHub.')
   })
 
-  await guidedStep(page, '3. Upload the skill ZIP', 'Click +, then Create skill, then Upload a skill, and choose qa/downloads/bridgelogics-product-discovery-skill.zip.', async () => {
-    await page.getByRole('button', { name: /^\+$|add|create/i }).first().click()
-    await page.getByText(/create skill/i).first().click().catch(() => undefined)
-    const chooser = page.waitForEvent('filechooser', { timeout: 15_000 })
-    await page.getByText(/upload a skill/i).first().click()
-    await (await chooser).setFiles(ZIP)
-    await caption(page, '3. Uploading', 'Watch for the skill to appear in the list.')
+  await guidedStep(page, '3. Upload the skill ZIP', 'Click + Add, then Upload skill, choose qa/downloads/bridgelogics-product-discovery-skill.zip, and click Upload.', async () => {
+    await page.getByRole('button', { name: /add/i }).first().click()
+    const chooser = page.waitForEvent('filechooser', { timeout: 15_000 }).catch(() => null)
+    await page.getByText(/^upload skill$/i).first().click()
+    const fc = await chooser
+    if (fc) await fc.setFiles(ZIP)
+    else await page.locator('input[type="file"]').first().setInputFiles(ZIP)
+    await expect(page.getByText('bridgelogics-product-discovery').first()).toBeVisible()
+    await caption(page, '3. The preview shows the skill name', 'Check the name and description, then Upload. A security scan runs.')
+    await page.getByRole('button', { name: /^upload$/i }).click()
   })
 
   await test.step('Confirm it is installed and on', async () => {
