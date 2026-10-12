@@ -17,7 +17,7 @@ test('Portfolio: visitor finds the Product Discovery Coach and reaches GitHub', 
     const heading = page.getByRole('heading', { name: 'AI Product Manager + Leader' })
     await heading.scrollIntoViewIfNeeded()
     await expect(heading).toBeVisible()
-    await spotlight(page, '#ai-lab .bl-section__header')
+    await spotlight(page, '.bl-section__header:has-text("AI Product Manager + Leader")')
     await caption(
       page,
       '2. They scroll to "AI Product Manager + Leader"',
