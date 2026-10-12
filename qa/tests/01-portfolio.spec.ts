@@ -7,7 +7,7 @@ import { test, expect } from '@playwright/test'
 import { caption, spotlight } from './helpers/narrate'
 import { URLS } from './helpers/test-user'
 
-test('Portfolio: visitor finds the Product Discovery Coach and reaches GitHub', async ({ page, context }) => {
+test('Portfolio: visitor finds the Product Discovery Coach and reaches the setup guide', async ({ page, context }) => {
   await test.step('Land on the portfolio', async () => {
     await page.goto(URLS.portfolio)
     await caption(page, '1. A visitor lands on your portfolio', `${URLS.portfolio}`)
@@ -38,21 +38,21 @@ test('Portfolio: visitor finds the Product Discovery Coach and reaches GitHub', 
     )
   })
 
-  await test.step('Click "View on GitHub"', async () => {
-    await caption(page, '4. They click "View on GitHub"', 'The card should take them to the public repository.')
+  await test.step('Click "Try it"', async () => {
+    await caption(page, '4. They click "Try it"', 'The card should open the step-by-step setup guide.')
     const [target] = await Promise.all([
-      // The card opens GitHub either in a new tab or the same tab; accept both.
+      // The card opens the guide either in a new tab or the same tab; accept both.
       Promise.race([
         context.waitForEvent('page').catch(() => new Promise<never>(() => undefined)),
         page
-          .waitForURL(/github\.com/)
+          .waitForURL(/github\.io/)
           .then(() => page)
           .catch(() => new Promise<never>(() => undefined)),
       ]),
       card.click(),
     ])
     await target.waitForLoadState()
-    await expect(target).toHaveURL(/github\.com\/BridgeLogicsProjects\/product-discovery-skill/)
-    await caption(target, '5. They arrive on GitHub', 'Journey 1 complete. Journey 2 picks up from here.')
+    await expect(target).toHaveURL(/bridgelogicsprojects\.github\.io\/product-discovery-skill/)
+    await caption(target, '5. They land on the setup guide', 'They pick Claude, ChatGPT, or Just try it. Journey 1 complete.')
   })
 })
