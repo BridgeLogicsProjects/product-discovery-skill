@@ -82,10 +82,15 @@ test('Claude Skill: test user installs the ZIP and gets a product review', async
     'Check: Claude uses the skill and asks what they built, instead of answering generically.',
   )
   await send(TEST_USER.product, '6. They describe their product', 'Check: focused questions, trust and legal risks named, no invented facts.')
+
+  await test.step('The living brief appears', async () => {
+    await caption(page, '6b. The brief opens on the side', 'Check: a BridgeLogics brief marked Preliminary, filling in as Sam answers. This is the deliverable.')
+    await expect(page.locator('body')).toContainText(/Preliminary|Product Review and Opportunity Assessment/i, { timeout: 120_000 })
+  })
   await send(TEST_USER.finish, '7. They ask for the final review', 'Check: Product Review and Opportunity Assessment with evidence labels.')
 
   await test.step('Check the final artifact', async () => {
     await expect(page.locator('body')).toContainText(/Opportunity Assessment|Evidence reviewed|Top three priorities/i)
-    await caption(page, '8. Journey complete', 'The skill installed from GitHub and produced the review.')
+    await caption(page, '8. Journey complete', 'The skill installed from GitHub and the brief is marked Complete.')
   })
 })
