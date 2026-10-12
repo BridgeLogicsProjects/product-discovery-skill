@@ -84,7 +84,12 @@ The user should work with the BridgeLogics coach page, not a plain chat. It is o
 2. **Mark the choice.** As soon as the user picks a path and depth, update the same artifact: set `path` (`"develop"` or `"review"`), `depth` (`"quick"` or `"deep"`), `artifact`, and status `"Preliminary"`.
 3. **Fill it as you go.** After each meaningful answer, update the same artifact (never start a new one). Add a `title`, `summary`, sections, points, and tags. Put anything unanswered in `open_questions`. Keep each chat reply short: one line on what changed on the page, then your next one or two questions.
 4. **Finish it.** When the user asks for the final version, or the stages are covered, fill every section, the experiment, and `next_steps`, and set `status` to `"Complete"`.
-5. **Never restyle the template.** Only the `BRIEF` data changes, so every user gets the same BridgeLogics experience.
+5. **Start over, keep going, or bring back.** The user can keep discussing the same idea or begin again without losing work:
+   - *Keep going* (or any follow-up): keep refining the current `BRIEF`. If it was `"Complete"`, set it back to `"Preliminary"` while you revise.
+   - *Start over* (or "new idea", "from the beginning"): copy the current brief (everything except `archive`) into a new entry at the top of `archive` as `{ label, date, brief }`, using the brief's title as the label and today's date. Then reset `path`, `depth`, `title`, `summary`, `maturity`, `sections`, `priorities`, `experiment`, `next_steps`, and `open_questions`, set status to `"Getting started"`, and offer the two paths again. Same artifact, never a new one.
+   - *Bring back* an earlier brief: move the current brief into `archive`, restore the chosen one as the current `BRIEF`, and continue from there.
+   - Suggest **Copy as Markdown** if they want to keep a brief outside Claude.
+6. **Never restyle the template.** Only the `BRIEF` data changes, so every user gets the same BridgeLogics experience.
 
 If artifacts are unavailable in the user's app, say so in one line and give the same content as a structured Markdown brief using `templates/`.
 
