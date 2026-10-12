@@ -24,9 +24,12 @@ import { TEST_USER, URLS } from './helpers/test-user'
 const AUTH = path.join(__dirname, '..', 'auth', 'chatgpt.json')
 const INSTRUCTIONS = path.join(__dirname, '..', 'downloads', 'instructions.md')
 
-test.skip(!fs.existsSync(AUTH), 'No ChatGPT sign-in saved. Run: npm run auth:chatgpt')
-test.skip(!fs.existsSync(INSTRUCTIONS), 'Run the GitHub journey first: npm run test:github')
-test.use({ storageState: AUTH })
+// Fail loudly (not a silent skip) so it is obvious what to do next.
+test.beforeAll(() => {
+  if (!fs.existsSync(AUTH)) throw new Error('No ChatGPT sign-in saved. Run: npm run auth:chatgpt')
+  if (!fs.existsSync(INSTRUCTIONS)) throw new Error('Run the GitHub journey first: npm run test:github')
+})
+test.use({ storageState: fs.existsSync(AUTH) ? AUTH : undefined })
 
 test('ChatGPT: test user pastes the coach and gets a product review', async ({ page }) => {
   const box = page.locator('#prompt-textarea, [contenteditable="true"]').first()

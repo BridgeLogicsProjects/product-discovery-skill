@@ -21,9 +21,12 @@ import { TEST_USER, URLS } from './helpers/test-user'
 const AUTH = path.join(__dirname, '..', 'auth', 'claude.json')
 const ZIP = path.join(__dirname, '..', 'downloads', 'bridgelogics-product-discovery-skill.zip')
 
-test.skip(!fs.existsSync(AUTH), 'No Claude sign-in saved. Run: npm run auth:claude')
-test.skip(!fs.existsSync(ZIP), 'Run the GitHub journey first: npm run test:github')
-test.use({ storageState: AUTH })
+// Fail loudly (not a silent skip) so it is obvious what to do next.
+test.beforeAll(() => {
+  if (!fs.existsSync(AUTH)) throw new Error('No Claude sign-in saved. Run: npm run auth:claude')
+  if (!fs.existsSync(ZIP)) throw new Error('Run the GitHub journey first: npm run test:github')
+})
+test.use({ storageState: fs.existsSync(AUTH) ? AUTH : undefined })
 
 test('Claude Skill: test user installs the ZIP and gets a product review', async ({ page }) => {
   await test.step('Check code execution is on', async () => {
