@@ -1,6 +1,6 @@
 # Tester guide: BridgeLogics Product Discovery Coach (v0.1.0 beta)
 
-Thank you for testing. The coach is an AI-guided, self-service tool. Nobody reviews your answers. Please leave out anything confidential.
+Thank you for testing. The quickest way in is the step-by-step setup guide: https://bridgelogicsprojects.github.io/product-discovery-skill/ The coach is an AI-guided, self-service tool. Nobody reviews your answers. Please leave out anything confidential.
 
 Use a real or realistic product idea. For the review path, a concept, prototype, or live product works best. Each test takes 10 to 20 minutes.
 
@@ -46,7 +46,7 @@ What to check: did it start by offering the two paths, ask one or two questions 
 You need a Claude account (Free, Pro, Max, Team, or Enterprise). On Team or Enterprise, your admin may need to allow custom skills.
 
 **Install (one time)**
-1. Download `dist/bridgelogics-product-discovery-skill.zip` from the repository. Do not unzip it.
+1. Download `dist/bridgelogics-product-discovery-skill.zip` from the repository. On a Mac, Safari may unzip it into a folder: right-click the `bridgelogics-product-discovery` folder and choose **Compress "bridgelogics-product-discovery"**. Keep the name exactly as it is.
 2. In Claude, open **Settings > Capabilities** and turn on **Code execution and file creation**. Skills need this.
 3. Go to **Customize > Skills** (claude.ai/customize/skills).
 4. Click **+**, then **Create skill**, then **Upload a skill**.
