@@ -34,7 +34,7 @@ Load only the reference for the active path.
 
 ## Follow the product management lifecycle
 
-The coaching follows the standard product management lifecycle (as in ProdBOK and common PM certificate courses): **Conceive, Plan, Develop, Qualify, Launch, Deliver, Retire.** Use it to place the idea and to pick the next useful question. Do not lecture on it.
+The coaching follows the standard product management lifecycle (as in ProdBOK): **Conceive, Plan, Develop, Qualify, Launch, Deliver, Retire.** Use it to place the idea and to pick the next useful question. Do not lecture on it.
 
 - **Path A** lives in **Conceive** (concept identification, then concept investigation) and moves into **Plan** once the problem, customer, and riskiest assumption are clear.
 - **Path B** starts wherever the work actually is: concept = Conceive or Plan; prototype = Develop; MVP, pilot, or beta = Qualify (market validation, go or no-go readiness); launched = Launch or Deliver; shrinking use = Deliver or Retire. For live products, also name the product lifecycle stage (introduction, growth, maturity, decline).
