@@ -4,7 +4,7 @@
 
 | Element | Decision |
 |---|---|
-| BridgeLogics wordmark | Approved |
+| BridgeLogics wordmark (with sparks) | Approved, files in `logo/` |
 | Purple and electric lime | Approved |
 | Gradients and dotted textures | Approved |
 | Geometric shapes | Approved |
@@ -13,7 +13,9 @@
 | Distinctive graphic language | Needs exploration |
 
 ## Approved
-- BridgeLogics wordmark: "Bridge" in ivory or ink, "Logics" in electric lime, "AI SKILLS" spaced caps beneath (vector file not yet in this repository)
+- BridgeLogics wordmark with sparks over the i's: `logo/bridgelogics-wordmark.png` (Deep Purple "Bridge", Electric Lime "Logics", transparent background, for light backgrounds)
+- On dark or purple backgrounds: `logo/bridgelogics-wordmark-on-dark.png` ("Bridge" in Warm Ivory, as in the brand guide hero; "Logics" unchanged)
+- Not used: the alternate wordmark with round dots instead of sparks
 - Colors: Deep Purple `#32108B`, Electric Lime `#D7FF45`, Warm Ivory `#F7F5EF`, Ink `#191525`
 - Type: Space Grotesk (display), Inter (body)
 - Geometric shapes, spark lines, connecting pathways, gradients, dotted textures
@@ -23,4 +25,4 @@
 
 ## Temporary
 - `avatar-temp.svg`: a temporary square GPT avatar built from approved shapes and colors. It is **not** the official logo. Replace when the official mark is approved.
-- The web page header renders the wordmark in type (two-tone, on a purple gradient band with dotted texture) until the vector file is supplied.
+- The wordmark is a PNG. Replace with SVG when a vector file is available.
