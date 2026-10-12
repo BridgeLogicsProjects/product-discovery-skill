@@ -11,7 +11,7 @@
 
 Turn product ideas into clearer decisions, stronger opportunities, and practical next steps.
 
-Part of the **BridgeLogics AI Skills** collection. Version 0.1.0. Methodology by Keeya Wang-Jones.
+Part of the **BridgeLogics AI Product Manager Skills** collection. Version 0.2.1. Methodology by Keeya Wang-Jones.
 
 ---
 
