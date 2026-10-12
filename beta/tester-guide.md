@@ -12,7 +12,7 @@ There are four ways in. Try the ones you were asked to test, then fill in the fe
 
 1. Go to **getbridgelogics.com**.
 2. Scroll to the **AI Product Manager + Leader** section.
-3. Find the **Product Discovery Coach** card and click **View on GitHub**.
+3. Find the **Product Discovery Coach** card and click **Try it**. It opens the step-by-step setup guide.
 
 What to check: can you find the card, and does the description make you want to try it?
 

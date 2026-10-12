@@ -4,17 +4,17 @@ Keep tester names out of the repository. Fill in the name when sending.
 
 Hi [Name],
 
-You mentioned wanting constructive feedback on your product, so I wanted to share something I have been building. BridgeLogics Product Discovery Coach is an AI-powered, self-service tool that reviews an existing product concept and helps you pin down gaps, risky assumptions, and a practical next test.
+You mentioned wanting honest feedback on your product, so I'd love for you to be one of the first people to try something I've built: the BridgeLogics Product Discovery Coach.
 
-If you'd like to try the private beta, open this link, choose "Review a product I've already developed," and describe your product in your own words:
+It's a self-service AI coach. You describe what you've built, and it reviews it with you: what's backed by evidence, what's still an assumption, the biggest risks, and the smallest next test worth running. It runs fully on its own; I don't see your answers.
 
-[GPT LINK]
+Start here and pick whichever you already use, Claude or ChatGPT:
+https://bridgelogicsprojects.github.io/product-discovery-skill/
 
-It is fully AI-guided, so it works on its own without me in the loop. A session takes about 15 to 20 minutes, and please leave out anything confidential.
+Then choose "Review my existing idea" and describe your product in your own words. A session takes about 15 to 20 minutes. Please leave out anything confidential.
 
-Afterwards, I'd really value three minutes of feedback on what worked and what didn't:
+Afterwards, could you reply here with quick answers to these? About 3 minutes:
+https://github.com/BridgeLogicsProjects/product-discovery-skill/blob/main/beta/feedback-form.md
 
-[FEEDBACK LINK]
-
-Thanks, and good luck with the build.
+Thank you, and good luck with the build.
 Keeya
