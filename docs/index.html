@@ -51,6 +51,8 @@ button{font:inherit;color:inherit}
 .route h2{font-size:19px}
 .route p{margin:0;color:var(--muted);font-size:14px}
 .route .meta{font-size:12px;color:var(--muted)}
+.route .pill{display:inline-block;margin-right:6px;padding:3px 8px;border-radius:999px;background:#D7FF45;color:#191525;letter-spacing:.06em}
+.route.rec{border-color:var(--accent)}
 
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
 .progress{display:flex;gap:6px;padding:16px 20px 0}
@@ -97,12 +99,17 @@ footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--line);font-si
   <section class="hero">
     <div class="label">Get started · Product Discovery Coach</div>
     <h1>Choose your AI assistant. <em>We'll walk you through it.</em></h1>
-    <p>An AI coach that helps you shape a new product idea or get a critical review of something you have built. Use the one you already have, Claude or ChatGPT, or try it without installing anything. Setup takes 2 to 5 minutes.</p>
+    <p>An AI coach that helps you shape a new product idea or get a critical review of something you have built. Start with Just try it: no install, a brief in about a minute. Want the coach on hand every time? Add it to Claude or ChatGPT in 2 to 5 minutes.</p>
   </section>
 
   <div class="routes" role="group" aria-label="Choose your AI assistant">
+    <button class="route rec" type="button" data-route="browser" aria-pressed="false">
+      <span class="label"><span class="pill">Recommended</span> No install</span><h2>Just try it</h2>
+      <p>Fill in a short form and get a brief in one go, then download it as Word or PDF. Live in Claude, or as a prompt to paste anywhere.</p>
+      <span class="meta">2 steps · 1 minute · either account</span>
+    </button>
     <button class="route" type="button" data-route="claude" aria-pressed="false">
-      <span class="label">Recommended</span><h2>Claude</h2>
+      <span class="label">Install in Claude</span><h2>Claude Skill</h2>
       <p>Install it once as a Claude Skill. Claude uses it whenever you ask about a product idea.</p>
       <span class="meta">5 steps · about 3 minutes · Claude account</span>
     </button>
@@ -111,16 +118,11 @@ footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--line);font-si
       <p>Paste the coach into a ChatGPT Project so it's there every time you open it.</p>
       <span class="meta">4 steps · about 2 minutes · ChatGPT account</span>
     </button>
-    <button class="route" type="button" data-route="browser" aria-pressed="false">
-      <span class="label">No install</span><h2>Just try it</h2>
-      <p>Fill in a short form and get a brief in one go. Live in Claude, or as a prompt to paste anywhere.</p>
-      <span class="meta">2 steps · 1 minute · either account</span>
-    </button>
   </div>
 
   <section class="panel" id="panel" aria-live="polite">
     <div class="step">
-      <div class="caption"><b>Start here</b>Choose Claude, ChatGPT, or Just try it above. You can switch at any time.</div>
+      <div class="caption"><b>Start here</b>Choose Just try it, Claude Skill, or ChatGPT above. You can switch at any time.</div>
     </div>
   </section>
 
@@ -271,7 +273,7 @@ footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--line);font-si
     history.replaceState(null, '', '#' + route); render()
   }
   const h = location.hash.slice(1)
-  if (ROUTES[h]) { route = h; idx = store.get('pd-' + h) || 0; render() }
+  route = ROUTES[h] ? h : 'browser'; idx = store.get('pd-' + route) || 0; render()
 })()
 </script>
 </body>
