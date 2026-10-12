@@ -36,7 +36,7 @@ You should see Claude offer two paths, ask one or two questions at a time, and f
 |---|---|
 | **Claude Skill** | Download [`dist/bridgelogics-product-discovery-skill.zip`](dist/bridgelogics-product-discovery-skill.zip), then follow the install steps below |
 | **ChatGPT** | Paste [`chatgpt/instructions.md`](chatgpt/instructions.md) into a ChatGPT Project's instructions (steps in the [tester guide](beta/tester-guide.md)) |
-| **Web coach** | Open [`web/index.html`](web/index.html) in Claude, or anywhere to use its copy-prompt mode |
+| **Web coach** | [Live coach in Claude](https://claude.ai/artifact/5jpfpETWC8ouutdk9NpJpd) (uses your Claude account), or the [paste version](https://bridgelogicsprojects.github.io/product-discovery-skill/coach.html) for any AI |
 
 New to it? Start with the [tester guide](beta/tester-guide.md).
 
