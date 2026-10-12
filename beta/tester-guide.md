@@ -49,8 +49,8 @@ You need a Claude account (Free, Pro, Max, Team, or Enterprise). On Team or Ente
 1. Download `dist/bridgelogics-product-discovery-skill.zip` from the repository. On a Mac, Safari may unzip it into a folder: right-click the `bridgelogics-product-discovery` folder and choose **Compress "bridgelogics-product-discovery"**. Keep the name exactly as it is.
 2. In Claude, open **Settings > Capabilities** and turn on **Code execution and file creation**. Skills need this.
 3. Go to **Customize > Skills** (claude.ai/customize/skills).
-4. Click **+**, then **Create skill**, then **Upload a skill**.
-5. Choose the ZIP file. The skill appears as **bridgelogics-product-discovery**.
+4. Click **+ Add**, then **Upload skill**.
+5. Choose the ZIP file, check the preview says **bridgelogics-product-discovery**, and click **Upload**.
 6. Make sure its toggle is **on**.
 
 **Use it**
