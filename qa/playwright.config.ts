@@ -30,6 +30,10 @@ export default defineConfig({
     screenshot: 'on',
     trace: 'retain-on-failure',
     acceptDownloads: true,
+    // No single click, type, or lookup may hang the run. AI replies have
+    // their own longer wait in waitForReplyToSettle.
+    actionTimeout: 20_000,
+    navigationTimeout: 45_000,
   },
   outputDir: 'test-results',
 })
