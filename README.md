@@ -1,3 +1,10 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/logo/bridgelogics-wordmark-on-dark.png">
+    <img src="assets/logo/bridgelogics-wordmark.png" alt="BridgeLogics" width="360">
+  </picture>
+</p>
+
 # BridgeLogics Product Discovery Skill
 
 **Connect ideas. Spark possibilities.**
