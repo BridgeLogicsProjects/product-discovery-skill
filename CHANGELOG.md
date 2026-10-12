@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.0 (2026-10-12)
+- Coaching follows the product management lifecycle (Conceive, Plan, Develop, Qualify, Launch, Deliver, Retire). Path A works in Conceive and hands off to Plan; Path B places the work by maturity.
+- Well-known PM lenses brought in one at a time and named plainly: persona, voice of the customer, SWOT, PEST, TAM / SAM / SOM, Kano, RICE, MVP, beta plan, go or no-go, risk register, AIDA, KPIs.
+- Coach page shows a lifecycle stepper, the lenses used so far, a Quick check card for the current question, and a Remember line on the brief.
+
 ## 0.1.1 (2026-10-12)
 - When the Claude Skill runs, it opens the BridgeLogics coach page as an artifact (path cards, depth), then builds the brief on that page as the user answers, and marks it Complete at the end.
 - New `claude/assets/coach-template.html`: one branded template so every user gets the same experience.
