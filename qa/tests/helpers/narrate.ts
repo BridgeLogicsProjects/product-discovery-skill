@@ -42,6 +42,8 @@ export async function caption(page: Page, step: string, detail = ''): Promise<vo
 
 /** Draw a lime outline around what the user is looking at. */
 export async function spotlight(page: Page, selector: string): Promise<void> {
+  // A spotlight is decoration: if the element isn't there, skip it after 3s
+  // instead of waiting forever.
   await page
     .locator(selector)
     .first()
@@ -49,7 +51,7 @@ export async function spotlight(page: Page, selector: string): Promise<void> {
       ;(node as HTMLElement).style.outline = '4px solid #D7FF45'
       ;(node as HTMLElement).style.outlineOffset = '4px'
       node.scrollIntoView({ behavior: 'smooth', block: 'center' })
-    })
+    }, undefined, { timeout: 3000 })
     .catch(() => undefined)
   await page.waitForTimeout(1200)
 }
