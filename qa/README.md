@@ -46,10 +46,19 @@ Journey 2 must run before 3 and 4: it downloads the files they use, just as a re
 
 Speed controls:
 
+Slower actions:
+
 ```bash
-SLOW=1500 npm run test:portfolio      # slower actions
-READ_MS=5000 npm run test:portfolio   # captions stay up longer
+SLOW=1500 npm run test:portfolio
 ```
+
+Captions stay up longer:
+
+```bash
+READ_MS=5000 npm run test:portfolio
+```
+
+Copy commands without anything after them. On a Mac, zsh treats a trailing `# note` as extra input, not a comment.
 
 Replay everything afterwards, with videos and screenshots per step:
 
