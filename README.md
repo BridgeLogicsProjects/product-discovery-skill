@@ -8,6 +8,28 @@ Part of the **BridgeLogics AI Skills** collection. Version 0.1.0. Methodology by
 
 ---
 
+## Start here
+
+**New to this? Use the [step-by-step setup guide](https://bridgelogicsprojects.github.io/product-discovery-skill/).** Pick Claude, ChatGPT, or no-install, and it walks you through each click.
+
+### Claude (about 3 minutes, once)
+
+1. **Download** [`bridgelogics-product-discovery-skill.zip`](https://github.com/BridgeLogicsProjects/product-discovery-skill/raw/main/dist/bridgelogics-product-discovery-skill.zip). On a Mac, Safari may unzip it into a folder: right-click the `bridgelogics-product-discovery` folder and choose **Compress "bridgelogics-product-discovery"**. Keep the name exactly as it is.
+2. **Turn on code execution:** in Claude, **Settings > Capabilities > Code execution and file creation**.
+3. **Upload:** **Customize > Skills**, click **+**, then **Create skill**, then **Upload a skill**, and choose the ZIP.
+4. **Switch it on:** make sure the toggle next to **bridgelogics-product-discovery** is on.
+5. **Use it:** in a new chat, send *"Use the BridgeLogics product discovery skill. I want to review a product I've already built."*
+
+You should see Claude offer two paths, ask one or two questions at a time, and finish with a written brief or review.
+
+### ChatGPT (about 2 minutes)
+
+1. Copy the text of [`chatgpt/instructions.md`](chatgpt/instructions.md).
+2. Create a ChatGPT **Project** called "Product Discovery Coach" and paste the text into its **Instructions**.
+3. Start a chat in the project and send *"Review a product I've already developed."*
+
+---
+
 ## Try it
 
 | Entry point | How to start |
