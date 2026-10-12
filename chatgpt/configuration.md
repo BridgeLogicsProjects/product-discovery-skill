@@ -18,11 +18,11 @@ Configured in ChatGPT GPT Builder on 2026-10-12 (draft, owner-only until approve
 
 ## Sharing
 
-1. Open the GPT in the editor and select **Create** (or **Update**).
-2. Choose **Anyone with the link** for the private beta. Do not choose the GPT Store until public release is approved.
-3. Copy the link and paste it into the beta invite.
+As of 2026-10-12, the GPT Builder share dialog offers only **Only me** and states that sharing GPTs with the public is no longer available. OpenAI is retiring custom GPTs on 11 December 2026 in favour of plugins. The GPT is saved as owner-only for reference.
 
-Testers need a ChatGPT account. Free accounts can use shared GPTs with usage limits.
+For testers, use the portable route instead: paste `instructions.md` into a ChatGPT Project's instructions, or as the first message of a chat. See `beta/tester-guide.md`.
+
+If ChatGPT plugins later support private sharing on this account, migrate the GPT and add the link here.
 
 ## Updating
 
