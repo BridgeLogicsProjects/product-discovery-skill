@@ -1,8 +1,10 @@
 # Changelog
 
 ## 0.1.1 (2026-10-12)
-- Claude Skill builds a living brief artifact early in the session and updates it as the user answers, then marks it Complete. The brief is the deliverable, not the chat.
-- New `claude/assets/brief-template.html`: one branded template so every user gets the same experience.
+- When the Claude Skill runs, it opens the BridgeLogics coach page as an artifact (path cards, depth), then builds the brief on that page as the user answers, and marks it Complete at the end.
+- New `claude/assets/coach-template.html`: one branded template so every user gets the same experience.
+- Path and depth offered as clickable choices where the app supports them.
+- Start over, keep going, or bring back: earlier briefs are kept under Earlier briefs on the same coach page.
 - Setup guide and README match the real Customize > Skills > + Add > Upload skill flow, with screenshots.
 - Official BridgeLogics wordmark (sparks) across the guide, coach pages, and README.
 
