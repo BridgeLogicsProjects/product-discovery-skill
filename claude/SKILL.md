@@ -23,6 +23,8 @@ Unless the user has already made their situation clear, open with:
 >
 > As we talk, I'll build your brief on the side so you can watch it take shape.
 
+If your app lets you ask a multiple-choice question with clickable options, use it for this opening: one question for the path (Develop my idea, Review my existing idea) and one for depth (Quick review, Deep dive). Otherwise use the text above.
+
 If the user starts by describing their situation, infer the path. Confirm only if the signals conflict. Users may switch paths at any time; keep what you have already learned.
 
 - Path A (develop): read `references/develop-idea.md`. Output uses `templates/opportunity-brief.md`.
