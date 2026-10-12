@@ -8,13 +8,25 @@ Part of the **BridgeLogics AI Skills** collection. Version 0.1.0. Methodology by
 
 ---
 
+## Try it
+
+| Entry point | How to start |
+|---|---|
+| **Claude Skill** | Download [`dist/bridgelogics-product-discovery-skill.zip`](dist/bridgelogics-product-discovery-skill.zip), then follow the install steps below |
+| **ChatGPT** | Paste [`chatgpt/instructions.md`](chatgpt/instructions.md) into a ChatGPT Project's instructions (steps in the [tester guide](beta/tester-guide.md)) |
+| **Web coach** | Open [`web/index.html`](web/index.html) in Claude, or anywhere to use its copy-prompt mode |
+
+New to it? Start with the [tester guide](beta/tester-guide.md).
+
+---
+
 ## What it does
 
 An AI product discovery coach that helps people develop or evaluate product ideas through structured thinking, honest challenge, and a usable written result. It runs on three surfaces from one shared methodology:
 
 | Surface | Best for | Folder |
 |---|---|---|
-| ChatGPT Custom GPT | Conversational coaching, step by step | `chatgpt/` |
+| ChatGPT (instructions) | Conversational coaching, step by step | `chatgpt/` |
 | Claude Skill | Conversational coaching inside Claude | `claude/` |
 | Web coach page | A one-shot brief from a short form, shown in readable sections | `web/` |
 
@@ -42,9 +54,13 @@ Every artifact separates what is known from what is assumed. Path A labels Known
 
 ## Using it
 
-**Custom GPT:** open the shared link and pick a conversation starter.
+**Claude Skill (install once):**
+1. Download `dist/bridgelogics-product-discovery-skill.zip`. Keep it zipped.
+2. In Claude, turn on **Settings > Capabilities > Code execution and file creation**.
+3. Go to **Customize > Skills**, click **+**, then **Create skill**, then **Upload a skill**, and choose the ZIP.
+4. Toggle the skill on, start a new chat, and ask: "Use the BridgeLogics product discovery skill to review my product."
 
-**Claude Skill:** zip the `claude/` folder (it contains `SKILL.md`, `references/`, and `templates/`) and upload it in Claude under Settings, Capabilities, Skills. Then ask Claude to help you develop or review a product idea.
+**ChatGPT:** OpenAI no longer allows custom GPTs to be shared by link, and custom GPTs retire on 11 December 2026. Paste `chatgpt/instructions.md` into a ChatGPT Project's instructions (or as the first message of a chat) to run the same coach in your own account.
 
 **Web page:** `web/index.html` is a single self-contained file. Inside Claude it generates results with the viewer's own Claude account. Anywhere else, it builds a ready-made prompt to paste into Claude or ChatGPT.
 
@@ -78,7 +94,8 @@ chatgpt/       GPT instructions and configuration
 web/           Single-file web coach
 templates/     Output templates
 evals/         Rubric, scenarios, and test results
-beta/          Feedback form and invite draft
+beta/          Tester guide, feedback form, invite draft
+dist/          Ready-to-upload Claude Skill ZIP
 assets/        Brand notes and temporary avatar
 ```
 
