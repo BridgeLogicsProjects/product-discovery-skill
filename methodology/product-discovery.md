@@ -42,7 +42,7 @@ B1 Understand what exists, B2 Determine maturity, B3 Clarify the review objectiv
 
 ## Lifecycle lens
 
-The coaching follows the standard product management lifecycle used in ProdBOK and common PM certificate courses: Conceive, Plan, Develop, Qualify, Launch, Deliver, Retire.
+The coaching follows the standard product management lifecycle used in ProdBOK: Conceive, Plan, Develop, Qualify, Launch, Deliver, Retire.
 
 - Path A works inside Conceive (concept identification, then concept investigation) and hands off to Plan.
 - Path B places the work by maturity: concept = Conceive or Plan, prototype = Develop, MVP or beta = Qualify, launched = Launch or Deliver, shrinking use = Deliver or Retire. Live products also get a product lifecycle stage (introduction, growth, maturity, decline).
