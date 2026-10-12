@@ -77,6 +77,19 @@ footer{font-size:12px;color:var(--muted)}
 .tip{font-size:13px;color:var(--muted)}
 .empty{border:1px dashed var(--line);border-radius:10px;padding:22px;text-align:center;color:var(--muted);background:var(--surface)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .path .k{color:#C9B8FF}:root:not([data-theme="light"]) .path.on{border-color:#C9B8FF;box-shadow:inset 0 0 0 1px #C9B8FF}}
+.life{display:grid;gap:8px}
+.steps{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;list-style:none;margin:0;padding:0}
+.steps li{display:grid;gap:4px;justify-items:center;text-align:center;font-size:12px;color:var(--muted);min-width:0}
+.steps li::before{content:"";width:100%;height:6px;border-radius:999px;background:var(--line)}
+.steps li.done::before{background:var(--purple)}
+.steps li.now::before{background:var(--lime);box-shadow:0 0 0 2px var(--purple)}
+.steps li.now{color:var(--fg);font-weight:600}
+@media (max-width:520px){.steps li{font-size:10px}}
+.lens{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.lens .chip{background:var(--surface-2);color:var(--fg)}
+.qc{display:grid;gap:6px;padding:14px 16px;border-radius:10px;background:var(--surface);border-left:4px solid var(--lime);border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.qc p{margin:0}
+.rem{margin:0;font-size:14px;color:#F7F5EF}.rem b{color:#D7FF45}
 </style>
 
 <div class="wrap" id="app"></div>
@@ -91,6 +104,10 @@ const BRIEF = {
   title: "",
   summary: "",
   maturity: "",                                   // Path B only, e.g. "MVP built"
+  phase: null,                                    // lifecycle phase: "conceive","plan","develop","qualify","launch","deliver","retire"
+  lenses: [],                                     // frameworks used so far, e.g. ["Persona","SWOT","TAM / SAM / SOM"]
+  remember: "",                                   // the one line to keep, in plain words
+  quick_check: "",                                // the question the user is answering now
   sections: [],                                   // [{ heading, summary, points: [{ tag, text }] }]
   priorities: [],                                 // Path B: [{ title, why }]
   experiment: { hypothesis: "", method: "", success: "", decision: "" },
@@ -103,6 +120,7 @@ const BRIEF = {
 
 const TAGS = { fact:"Known fact", assumption:"Assumption", validate:"To validate", evidence:"Evidence reviewed",
   inference:"Reasonable inference", unverified:"Unverified assumption", unavailable:"Not available" }
+const PHASES = [["conceive","Conceive"],["plan","Plan"],["develop","Develop"],["qualify","Qualify"],["launch","Launch"],["deliver","Deliver"],["retire","Retire"]]
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]))
 const chip = t => `<span class="chip t-${TAGS[t] ? t : "unavailable"}">${TAGS[t] || "Note"}</span>`
 
@@ -119,14 +137,20 @@ function render(b) {
     }).join("")}</section>` : ""
   const tip = `<p class="tip">Say <b>start over</b> in the chat to begin a new brief (this one moves to Earlier briefs), <b>keep going</b> to refine it, or <b>bring back</b> an earlier brief.</p>`
   const card = (key, n, title, text) => `<div class="path ${b.path ? (b.path === key ? "on" : "off") : ""}"><span class="k">Path ${n}</span><h3>${title}</h3><p>${text}</p></div>`
+  const pi = PHASES.findIndex(p => p[0] === b.phase)
+  const life = `<section class="life"><div class="label">Where your idea sits in the product lifecycle</div>
+    <ol class="steps">${PHASES.map(([k, n], i) => `<li class="${pi < 0 ? "" : i < pi ? "done" : i === pi ? "now" : ""}">${n}</li>`).join("")}</ol>
+    ${(b.lenses || []).length ? `<div class="lens"><span class="label">Lenses used</span>${b.lenses.map(l => `<span class="chip">${esc(l)}</span>`).join("")}</div>` : ""}</section>`
+  const qc = b.quick_check ? `<section class="qc"><div class="label">Quick check</div><p>${esc(b.quick_check)}</p><span class="tip">Answer in the chat. Your brief updates here.</span></section>` : ""
   const coach = `
-  <div class="band"><div class="wm" aria-label="BridgeLogics AI Skills"><img src="https://bridgelogicsprojects.github.io/product-discovery-skill/img/bridgelogics-wordmark-on-dark.png" alt="BridgeLogics" height="38" style="display:block;height:38px;width:auto" onerror="this.remove();document.querySelectorAll(\'.wm b\').forEach(e=>e.hidden=false)"><b hidden>Bridge<span>Logics</span></b><small>AI SKILLS</small></div><span class="v">Product Discovery Coach · v0.1.1</span></div>
+  <div class="band"><div class="wm" aria-label="BridgeLogics AI Skills"><img src="https://bridgelogicsprojects.github.io/product-discovery-skill/img/bridgelogics-wordmark-on-dark.png" alt="BridgeLogics" height="38" style="display:block;height:38px;width:auto" onerror="this.remove();document.querySelectorAll(\'.wm b\').forEach(e=>e.hidden=false)"><b hidden>Bridge<span>Logics</span></b><small>AI SKILLS</small></div><span class="v">Product Discovery Coach · v0.2.0</span></div>
   <section class="hero"><div class="label">Connect ideas. Spark possibilities.</div>
     <h2>Turn product ideas into <em>clearer decisions</em>.</h2>
     <p>We talk in the chat. Your brief builds here as you answer: what you know, what you are assuming, the riskiest bet, and the smallest test worth running.</p></section>
   <div class="paths">${card("develop", 1, "Develop my idea", "I have an idea and want help shaping it into something worth testing.")}${card("review", 2, "Review my existing idea", "I have a concept, prototype, or product and want constructive, critical feedback.")}</div>
   <div class="depth"><span class="label">Depth</span><span class="pill ${b.depth === "quick" ? "on" : ""}">Quick review</span><span class="pill ${b.depth === "deep" ? "on" : ""}">Deep dive</span>
-    ${b.path ? "" : '<span class="hint">Choose a path in the chat to begin.</span>'}</div>`
+    ${b.path ? "" : '<span class="hint">Choose a path in the chat to begin.</span>'}</div>
+  ${life}${qc}`
   if (!(b.sections || []).length && !b.title) {
     document.getElementById("app").innerHTML = coach + `<div class="empty">Your brief will appear here as we talk.</div>${archive}
     <footer>AI-guided coaching from the BridgeLogics Product Discovery Coach, a methodology by Keeya Wang-Jones. It does not include personal review by the author. Please leave out anything confidential.</footer>`
@@ -140,6 +164,7 @@ function render(b) {
     <div class="label">${esc(b.artifact)}${b.maturity ? " · " + esc(b.maturity) : ""}</div>
     <h1>${esc(b.title)}</h1>
     <p>${esc(b.summary)}</p>
+    ${b.remember ? `<p class="rem"><b>Remember:</b> ${esc(b.remember)}</p>` : ""}
     <div class="legend">${Object.keys(TAGS).filter(k => counts[k]).map(k => `<span class="chip">${counts[k]} × ${TAGS[k]}</span>`).join("")}</div>
   </header>
   ${(b.priorities || []).length ? `<div class="label">Top priorities</div><ol class="num">${b.priorities.map(p => `<li><div><b>${esc(p.title)}</b><span>${esc(p.why)}</span></div></li>`).join("")}</ol>` : ""}
@@ -155,7 +180,8 @@ function render(b) {
   ${archive}
   <footer>AI-guided output from the BridgeLogics Product Discovery Coach, a methodology by Keeya Wang-Jones. Not a substitute for customer research or professional advice. It does not include personal review by the author.</footer>`
   document.getElementById("md").onclick = async () => {
-    const out = [`# ${b.artifact}: ${b.title}`, "", `Status: ${b.status}`, "", b.summary, ""]
+    const ph = PHASES.find(p => p[0] === b.phase)
+    const out = [`# ${b.artifact}: ${b.title}`, "", `Status: ${b.status}`, ph ? `Lifecycle phase: ${ph[1]}` : "", (b.lenses || []).length ? `Lenses used: ${b.lenses.join(", ")}` : "", "", b.summary, b.remember ? `Remember: ${b.remember}` : "", ""].filter((l, i, a) => l !== "" || a[i - 1] !== "")
     for (const s of b.sections || []) { out.push(`## ${s.heading}`, s.summary); for (const p of s.points || []) out.push(`- ${TAGS[p.tag] || "Note"}: ${p.text}`); out.push("") }
     if (hasExp) out.push("## Experiment", `- Hypothesis: ${e.hypothesis}`, `- Method: ${e.method}`, `- Success: ${e.success}`, `- Decision: ${e.decision}`, "")
     ;(b.next_steps || []).forEach((s, i) => out.push(`${i + 1}. ${s}`))
