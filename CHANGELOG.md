@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Copyright line shortened to "© 2026 BridgeLogics. All rights reserved." now that the LinkedIn credit names the author.
 - Live coach: new hero illustration by Keeya Wang-Jones (magnifier over a brief, in brand purple and lime) on a transparent background, shown beside the headline on wide screens and below it on phones. Replaces the growth curve.
 
 ## 0.2.1 (2026-10-12)

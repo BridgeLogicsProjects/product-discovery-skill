@@ -153,7 +153,7 @@ function render(b) {
   ${life}${qc}`
   if (!(b.sections || []).length && !b.title) {
     document.getElementById("app").innerHTML = coach + `<div class="empty">Your brief will appear here as we talk.</div>${archive}
-    <footer>AI-guided coaching from the BridgeLogics Product Discovery Coach, a methodology by Keeya Wang-Jones. It does not include personal review by the author. Please leave out anything confidential. © 2026 BridgeLogics. Keeya Wang-Jones. All rights reserved.</footer>`
+    <footer>AI-guided coaching from the BridgeLogics Product Discovery Coach, a methodology by Keeya Wang-Jones. It does not include personal review by the author. Please leave out anything confidential. © 2026 BridgeLogics. All rights reserved.</footer>`
     return
   }
   document.getElementById("app").innerHTML = coach + `
@@ -178,7 +178,7 @@ function render(b) {
   <div class="actions"><button type="button" id="md">Copy as Markdown</button><span id="st" class="label"></span></div>
   ${tip}
   ${archive}
-  <footer>AI-guided output from the BridgeLogics Product Discovery Coach, a methodology by Keeya Wang-Jones. Not a substitute for customer research or professional advice. It does not include personal review by the author. © 2026 BridgeLogics. Keeya Wang-Jones. All rights reserved.</footer>`
+  <footer>AI-guided output from the BridgeLogics Product Discovery Coach, a methodology by Keeya Wang-Jones. Not a substitute for customer research or professional advice. It does not include personal review by the author. © 2026 BridgeLogics. All rights reserved.</footer>`
   document.getElementById("md").onclick = async () => {
     const ph = PHASES.find(p => p[0] === b.phase)
     const out = [`# ${b.artifact}: ${b.title}`, "", `Status: ${b.status}`, ph ? `Lifecycle phase: ${ph[1]}` : "", (b.lenses || []).length ? `Lenses used: ${b.lenses.join(", ")}` : "", "", b.summary, b.remember ? `Remember: ${b.remember}` : "", ""].filter((l, i, a) => l !== "" || a[i - 1] !== "")

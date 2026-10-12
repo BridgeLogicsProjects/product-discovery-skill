@@ -103,7 +103,7 @@ function render(b) {
   ${(b.next_steps || []).length ? `<div class="label">Next steps you can take</div><ol class="num">${b.next_steps.map(s => `<li><div>${esc(s)}</div></li>`).join("")}</ol>` : ""}
   ${(b.open_questions || []).length ? `<section class="open"><b>Still open</b><ul>${b.open_questions.map(q => `<li>${esc(q)}</li>`).join("")}</ul></section>` : ""}
   <div class="actions"><button type="button" id="md">Copy as Markdown</button><span id="st" class="label"></span></div>
-  <footer>AI-guided output from the BridgeLogics Product Discovery Coach, a methodology by Keeya Wang-Jones. Not a substitute for customer research or professional advice. It does not include personal review by the author. © 2026 BridgeLogics. Keeya Wang-Jones. All rights reserved.</footer>`
+  <footer>AI-guided output from the BridgeLogics Product Discovery Coach, a methodology by Keeya Wang-Jones. Not a substitute for customer research or professional advice. It does not include personal review by the author. © 2026 BridgeLogics. All rights reserved.</footer>`
   document.getElementById("md").onclick = async () => {
     const out = [`# ${b.artifact}: ${b.title}`, "", `Status: ${b.status}`, "", b.summary, ""]
     for (const s of b.sections || []) { out.push(`## ${s.heading}`, s.summary); for (const p of s.points || []) out.push(`- ${TAGS[p.tag] || "Note"}: ${p.text}`); out.push("") }
