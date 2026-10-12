@@ -1,0 +1,152 @@
+<!-- BridgeLogics Product Discovery Coach: the coach and the living brief in one page. Fill BRIEF below; keep everything else as is. -->
+<title>BridgeLogics Product Discovery Coach</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{--purple:#32108B;--lime:#D7FF45;--ivory:#F7F5EF;--ink:#191525;--bg:#F7F5EF;--surface:#fff;--surface-2:#EEEBF5;--fg:#191525;--muted:#5B5670;--line:#DCD7E6;
+--fact:#1F6B45;--fact-bg:#E3F2EA;--assume:#8A5A00;--assume-bg:#FBF0D9;--val:#32108B;--val-bg:#ECE6FA;--gap:#6B6680;--gap-bg:#EFEDF3;
+--display:"Space Grotesk",ui-sans-serif,system-ui,sans-serif;--body:"Inter",ui-sans-serif,system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141020;--surface:#1E1830;--surface-2:#271F3F;--fg:#F2EFF8;--muted:#A9A2BF;--line:#352C52;
+--fact:#8FD9B0;--fact-bg:#1C3328;--assume:#F0C46A;--assume-bg:#3A2E14;--val:#C9B8FF;--val-bg:#2C2250;--gap:#B4AEC8;--gap-bg:#2A2638;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#141020;--surface:#1E1830;--surface-2:#271F3F;--fg:#F2EFF8;--muted:#A9A2BF;--line:#352C52;
+--fact:#8FD9B0;--fact-bg:#1C3328;--assume:#F0C46A;--assume-bg:#3A2E14;--val:#C9B8FF;--val-bg:#2C2250;--gap:#B4AEC8;--gap-bg:#2A2638;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 var(--body);padding-inline:16px;padding-block:16px 40px}
+.wrap{max-width:900px;margin:0 auto;display:grid;gap:16px}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.15;text-wrap:balance}
+.label{font:600 12px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.head{border-radius:10px;padding:20px 22px;display:grid;gap:10px;color:#F7F5EF;
+ background:radial-gradient(circle,rgba(247,245,239,.10) 1px,transparent 1.2px) 0 0/10px 10px,linear-gradient(120deg,#32108B 0%,#4A26B8 100%)}
+.head .label{color:#CFC6EE}
+.brand{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font:600 12px/1 var(--display);letter-spacing:.2em;text-transform:uppercase;color:#D7FF45}
+.head h1{font-size:clamp(22px,4vw,32px)}
+.head p{margin:0;max-width:70ch}
+.status{justify-self:start;font:600 12px/1 var(--body);padding:6px 10px;border-radius:999px;background:#D7FF45;color:#191525}
+.legend{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;font:600 12px/1 var(--body);padding:5px 9px;border-radius:999px;white-space:nowrap}
+.head .chip{background:rgba(255,255,255,.12);color:#F7F5EF}
+.t-fact,.t-evidence{color:var(--fact);background:var(--fact-bg)}
+.t-assumption,.t-inference{color:var(--assume);background:var(--assume-bg)}
+.t-validate,.t-unverified{color:var(--val);background:var(--val-bg)}
+.t-unavailable{color:var(--gap);background:var(--gap-bg)}
+.exp{background:var(--surface-2);border-radius:10px;padding:18px;display:grid;gap:10px}
+.exp dl{margin:0;display:grid;grid-template-columns:max-content 1fr;gap:8px 16px}
+.exp dt{font-weight:600}.exp dd{margin:0;min-width:0}
+@media (max-width:520px){.exp dl{grid-template-columns:1fr}}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:10px;min-width:0}
+summary{list-style:none;cursor:pointer;padding:14px 16px;display:grid;gap:4px}
+summary::-webkit-details-marker{display:none}
+summary h3{font-size:16px;display:flex;justify-content:space-between;gap:8px}
+summary h3::after{content:"+";color:var(--muted)}
+details[open] summary h3::after{content:"\2212"}
+summary p{margin:0;color:var(--muted);font-size:14px}
+ul.pts{list-style:none;margin:0;padding:0 16px 14px;display:grid;gap:8px}
+ul.pts li{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start}
+ol.num{margin:0;padding:0;list-style:none;display:grid;gap:8px;counter-reset:n}
+ol.num li{counter-increment:n;display:grid;grid-template-columns:30px 1fr;gap:10px;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+ol.num li::before{content:counter(n);font:700 15px/30px var(--display);text-align:center;width:30px;height:30px;border-radius:50%;background:var(--lime);color:var(--ink)}
+ol.num span{color:var(--muted);font-size:14px;display:block}
+.open{border:1px dashed var(--purple);border-radius:10px;padding:16px;background:var(--surface)}
+.open ul{margin:6px 0 0;padding-left:20px}
+.actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+button{font:inherit;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:999px;padding:8px 16px;cursor:pointer}
+footer{font-size:12px;color:var(--muted)}
+.band{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:16px 20px;border-radius:10px;color:#F7F5EF;
+ background:radial-gradient(circle,rgba(247,245,239,.10) 1px,transparent 1.2px) 0 0/10px 10px,linear-gradient(120deg,#32108B 0%,#4A26B8 100%)}
+.wm b{font:700 22px/1 var(--display);letter-spacing:-.02em}.wm b span{color:#D7FF45}
+.wm small{display:block;margin-top:4px;font:600 10px/1 var(--display);letter-spacing:.38em}
+.band .v{font-size:13px;color:#CFC6EE}
+.hero{display:grid;gap:8px;padding-block:8px}
+.hero h2{font-size:clamp(26px,4.6vw,40px);letter-spacing:-.02em}
+.hero h2 em{font-style:normal;background:linear-gradient(transparent 62%,var(--lime) 62%);color:var(--ink)}
+.hero p{margin:0;color:var(--muted);max-width:62ch}
+.paths{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.path{display:grid;gap:6px;padding:16px 18px;border:2px solid var(--line);border-radius:10px;background:var(--surface)}
+.path.on{border-color:var(--purple);box-shadow:inset 0 0 0 1px var(--purple)}
+.path.off{opacity:.55}
+.path .k{font:700 13px/1 var(--display);color:var(--purple)}
+.path h3{font-size:19px}.path p{margin:0;color:var(--muted);font-size:14px}
+.depth{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.pill{border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:13px}
+.pill.on{background:var(--purple);border-color:var(--purple);color:#fff}
+.hint{font-size:14px;color:var(--muted)}
+.empty{border:1px dashed var(--line);border-radius:10px;padding:22px;text-align:center;color:var(--muted);background:var(--surface)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .path .k{color:#C9B8FF}:root:not([data-theme="light"]) .path.on{border-color:#C9B8FF;box-shadow:inset 0 0 0 1px #C9B8FF}}
+</style>
+
+<div class="wrap" id="app"></div>
+
+<script>
+/* ===== Claude: replace ONLY this object each time the brief changes. ===== */
+const BRIEF = {
+  path: null,                                     // null until chosen, then "develop" or "review"
+  depth: null,                                    // null, "quick", or "deep"
+  artifact: "Product Opportunity Brief",          // or "Product Review and Opportunity Assessment"
+  status: "Getting started",                      // "Getting started", then "Preliminary" while talking, "Complete" at the end
+  title: "",
+  summary: "",
+  maturity: "",                                   // Path B only, e.g. "MVP built"
+  sections: [],                                   // [{ heading, summary, points: [{ tag, text }] }]
+  priorities: [],                                 // Path B: [{ title, why }]
+  experiment: { hypothesis: "", method: "", success: "", decision: "" },
+  next_steps: [],
+  open_questions: []
+};
+/* Tags. Path A: fact | assumption | validate. Path B: evidence | inference | unverified | unavailable. */
+/* ========================================================================= */
+
+const TAGS = { fact:"Known fact", assumption:"Assumption", validate:"To validate", evidence:"Evidence reviewed",
+  inference:"Reasonable inference", unverified:"Unverified assumption", unavailable:"Not available" }
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]))
+const chip = t => `<span class="chip t-${TAGS[t] ? t : "unavailable"}">${TAGS[t] || "Note"}</span>`
+
+function render(b) {
+  const counts = {}
+  for (const s of b.sections || []) for (const p of s.points || []) counts[p.tag] = (counts[p.tag] || 0) + 1
+  const e = b.experiment || {}
+  const hasExp = e.hypothesis || e.method
+  const card = (key, n, title, text) => `<div class="path ${b.path ? (b.path === key ? "on" : "off") : ""}"><span class="k">Path ${n}</span><h3>${title}</h3><p>${text}</p></div>`
+  const coach = `
+  <div class="band"><div class="wm" aria-label="BridgeLogics AI Skills"><img src="https://bridgelogicsprojects.github.io/product-discovery-skill/img/bridgelogics-wordmark-on-dark.png" alt="BridgeLogics" height="38" style="display:block;height:38px;width:auto" onerror="this.remove();document.querySelectorAll(\'.wm b\').forEach(e=>e.hidden=false)"><b hidden>Bridge<span>Logics</span></b><small>AI SKILLS</small></div><span class="v">Product Discovery Coach · v0.1.1</span></div>
+  <section class="hero"><div class="label">Connect ideas. Spark possibilities.</div>
+    <h2>Turn product ideas into <em>clearer decisions</em>.</h2>
+    <p>We talk in the chat. Your brief builds here as you answer: what you know, what you are assuming, the riskiest bet, and the smallest test worth running.</p></section>
+  <div class="paths">${card("develop", 1, "Develop my idea", "I have an idea and want help shaping it into something worth testing.")}${card("review", 2, "Review my existing idea", "I have a concept, prototype, or product and want constructive, critical feedback.")}</div>
+  <div class="depth"><span class="label">Depth</span><span class="pill ${b.depth === "quick" ? "on" : ""}">Quick review</span><span class="pill ${b.depth === "deep" ? "on" : ""}">Deep dive</span>
+    ${b.path ? "" : '<span class="hint">Choose a path in the chat to begin.</span>'}</div>`
+  if (!(b.sections || []).length && !b.title) {
+    document.getElementById("app").innerHTML = coach + `<div class="empty">Your brief will appear here as we talk.</div>
+    <footer>AI-guided coaching from the BridgeLogics Product Discovery Coach, a methodology by Keeya Wang-Jones. It does not include personal review by the author. Please leave out anything confidential.</footer>`
+    return
+  }
+  document.getElementById("app").innerHTML = coach + `
+  <div class="label">Your brief</div>
+  <header class="head">
+    <div class="brand"><span>BridgeLogics AI Skills</span><span>Product Discovery Coach</span></div>
+    <span class="status">${esc(b.status)}${b.status === "Preliminary" ? " · updating as we talk" : ""}</span>
+    <div class="label">${esc(b.artifact)}${b.maturity ? " · " + esc(b.maturity) : ""}</div>
+    <h1>${esc(b.title)}</h1>
+    <p>${esc(b.summary)}</p>
+    <div class="legend">${Object.keys(TAGS).filter(k => counts[k]).map(k => `<span class="chip">${counts[k]} × ${TAGS[k]}</span>`).join("")}</div>
+  </header>
+  ${(b.priorities || []).length ? `<div class="label">Top priorities</div><ol class="num">${b.priorities.map(p => `<li><div><b>${esc(p.title)}</b><span>${esc(p.why)}</span></div></li>`).join("")}</ol>` : ""}
+  ${hasExp ? `<section class="exp"><div class="label">Smallest useful experiment</div><dl>
+    <dt>Hypothesis</dt><dd>${esc(e.hypothesis)}</dd><dt>Method</dt><dd>${esc(e.method)}</dd>
+    <dt>Success looks like</dt><dd>${esc(e.success)}</dd><dt>Decision it informs</dt><dd>${esc(e.decision)}</dd></dl></section>` : ""}
+  <div class="grid">${(b.sections || []).map((s, i) => `<details ${i < 2 ? "open" : ""}><summary><h3>${esc(s.heading)}</h3><p>${esc(s.summary)}</p></summary>
+    <ul class="pts">${(s.points || []).map(p => `<li>${chip(p.tag)}<span>${esc(p.text)}</span></li>`).join("")}</ul></details>`).join("")}</div>
+  ${(b.next_steps || []).length ? `<div class="label">Next steps you can take</div><ol class="num">${b.next_steps.map(s => `<li><div>${esc(s)}</div></li>`).join("")}</ol>` : ""}
+  ${(b.open_questions || []).length ? `<section class="open"><b>Still open</b><ul>${b.open_questions.map(q => `<li>${esc(q)}</li>`).join("")}</ul></section>` : ""}
+  <div class="actions"><button type="button" id="md">Copy as Markdown</button><span id="st" class="label"></span></div>
+  <footer>AI-guided output from the BridgeLogics Product Discovery Coach, a methodology by Keeya Wang-Jones. Not a substitute for customer research or professional advice. It does not include personal review by the author.</footer>`
+  document.getElementById("md").onclick = async () => {
+    const out = [`# ${b.artifact}: ${b.title}`, "", `Status: ${b.status}`, "", b.summary, ""]
+    for (const s of b.sections || []) { out.push(`## ${s.heading}`, s.summary); for (const p of s.points || []) out.push(`- ${TAGS[p.tag] || "Note"}: ${p.text}`); out.push("") }
+    if (hasExp) out.push("## Experiment", `- Hypothesis: ${e.hypothesis}`, `- Method: ${e.method}`, `- Success: ${e.success}`, `- Decision: ${e.decision}`, "")
+    ;(b.next_steps || []).forEach((s, i) => out.push(`${i + 1}. ${s}`))
+    try { await navigator.clipboard.writeText(out.join("\n")); document.getElementById("st").textContent = "Copied" }
+    catch { document.getElementById("st").textContent = "Copy not allowed here" }
+  }
+}
+render(BRIEF)
+</script>
