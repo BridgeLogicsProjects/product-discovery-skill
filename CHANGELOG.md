@@ -3,7 +3,7 @@
 ## Unreleased
 - Guide: Just try it is now the first, recommended route and opens by default, followed by ChatGPT and then Claude Skill (ordered by setup effort).
 - Copyright line shortened to "© 2026 BridgeLogics. All rights reserved." now that the LinkedIn credit names the author.
-- Live coach: new hero illustration by Keeya Wang-Jones (magnifier over a brief, in brand purple and lime) on a transparent background, shown beside the headline on wide screens and below it on phones. Replaces the growth curve.
+- Live coach: new hero illustration by Keeya Wang-Jones (magnifier over a brief, in brand purple and lime) as the original transparent PNG at native proportions, shown beside the headline on wide screens and below it on phones. Replaces the growth curve.
 
 ## 0.2.1 (2026-10-12)
 - Skill: new Step 0 tells users about the approval prompt before the coach page is created, explains what it does, and falls back to a chat brief if they decline. The template is copied with file tools, not shell commands, to keep prompts few and readable.
