@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased
+- Live coach: new hero illustration showing many assumptions narrowing to one riskiest bet, replacing the growth curve.
+
 ## 0.2.1 (2026-10-12)
 - Skill: new Step 0 tells users about the approval prompt before the coach page is created, explains what it does, and falls back to a chat brief if they decline. The template is copied with file tools, not shell commands, to keep prompts few and readable.
 - Just try it (live coach): Download Word and Download PDF buttons for a finished brief or review, alongside Copy as Markdown. The PDF is a branded BridgeLogics report with tagged points, an experiment card, and a footer on every page.
