@@ -63,6 +63,10 @@ button{font:inherit;color:inherit}
 .path{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;background:var(--surface-2);padding:2px 6px;border-radius:5px;white-space:nowrap}
 .tip{border-radius:8px;padding:12px 14px;font-size:14px}
 .tip.warn{background:var(--warn-bg);color:var(--warn)}
+.shot{margin:0;display:grid;gap:6px}
+.shot img{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;box-shadow:0 6px 18px rgba(25,21,37,.10);background:#fff}
+.shot figcaption{font-size:13px;color:var(--muted)}
+.shot.small img{max-width:300px}
 .tip.ok{background:var(--ok-bg);color:var(--ok)}
 .tip b{display:block;margin-bottom:2px}
 .copyrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
@@ -147,18 +151,23 @@ footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--line);font-si
           <div class="tip warn"><b>On a Team or Enterprise plan?</b>Your admin may need to allow skills first.</div>`,
         check: 'The "Code execution and file creation" switch is on.' },
       { title: 'Upload the skill',
-        body: `<ol><li>Open <a href="https://claude.ai/customize/skills" target="_blank" rel="noopener">Customize &gt; Skills</a>.</li>
-          <li>Click <b>+</b>, then <b>Create skill</b>, then <b>Upload a skill</b>.</li>
-          <li>Choose the ZIP from step 1.</li></ol>
+        body: `<ol><li>Open <a href="https://claude.ai/customize/skills" target="_blank" rel="noopener">Customize &gt; Skills</a>. (Older menus said Settings &gt; Skills; it has moved.)</li>
+          <li>Click <b>+ Add</b>, then <b>Upload skill</b>.</li>
+          <li>Choose the ZIP from step 1. Check the preview says <b>bridgelogics-product-discovery</b>, then click <b>Upload</b>. A short security scan runs.</li></ol>
+          <figure class="shot small"><img src="img/claude-add-menu.png" alt="The Add menu with Upload skill at the top" loading="lazy"><figcaption>Click + Add, then Upload skill.</figcaption></figure>
+          <figure class="shot "><img src="img/claude-upload-dialog.png" alt="Upload a skill dialog showing the ZIP, the skill preview, and the Upload button" loading="lazy"><figcaption>The preview shows the skill name and description. Click Upload.</figcaption></figure>
           <div class="tip warn"><b>Upload failed?</b>Check it's the ZIP, not the folder, and that step 2 is done. Note the exact error message.</div>`,
         check: '<b style="display:inline">bridgelogics-product-discovery</b> appears in your skills list.' },
       { title: 'Switch it on',
-        body: `<p>Find <b>bridgelogics-product-discovery</b> in the list and make sure its toggle is on. That's the whole install. You only do steps 1 to 4 once.</p>`,
+        body: `<p>Open <b>bridgelogics-product-discovery</b> in your skills and make sure the toggle at the top right is on. That's the whole install. You only do steps 1 to 4 once.</p>
+          <figure class="shot "><img src="img/claude-skill-page.png" alt="The installed skill page with Share, Try in chat, and an on toggle" loading="lazy"><figcaption>Toggle on. "Try in chat" opens a new chat with the skill ready.</figcaption></figure>`,
         check: 'The toggle next to the skill is on.' },
       { title: 'Use it',
-        body: `<p>Open a <a href="https://claude.ai/new" target="_blank" rel="noopener">new chat in Claude</a> and send this:</p>
+        body: `<p>Open a <a href="https://claude.ai/new" target="_blank" rel="noopener">new chat in Claude</a>. Type <b>/</b> and pick <b>bridgelogics-product-discovery</b>, then say what you need. Or just send this:</p>
           ${copy('p-claude', "Use the BridgeLogics product discovery skill. I want to review a product I've already built.")}
-          <p>Or start a new idea: <i>"Use the BridgeLogics product discovery skill to help me develop an idea."</i></p>`,
+          <figure class="shot "><img src="img/claude-slash-command.png" alt="The chat box with /bridgelogics-product-discovery typed before the request" loading="lazy"><figcaption>Typing / lets you pick the skill by name.</figcaption></figure>
+          <div class="tip warn"><b>No need to attach the ZIP to your chat.</b>Once uploaded in step 3, the skill is always available.</div>
+          <figure class="shot "><img src="img/claude-first-reply.png" alt="Claude reading the skill and choosing Path 2: Review my existing idea" loading="lazy"><figcaption>A good first reply: it picks a path, asks one focused question, and reminds you what not to share.</figcaption></figure>`,
         check: 'Claude offers two paths, asks one or two questions at a time, and finishes with a written brief or review you can keep.' },
     ],
     chatgpt: [
