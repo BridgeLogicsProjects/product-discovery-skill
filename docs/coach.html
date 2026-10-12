@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+<title>BridgeLogics Product Discovery Coach</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: brand bar, short thesis hero, two path cards, one input form, then results as a scannable stack of collapsible sections */
+:root{
+  --purple:#32108B; --lime:#D7FF45; --ivory:#F7F5EF; --ink:#191525;
+  --bg:var(--ivory); --surface:#FFFFFF; --surface-2:#EEEBF5; --fg:var(--ink); --muted:#5B5670;
+  --line:#DCD7E6; --accent:var(--purple); --accent-fg:#FFFFFF; --hi:var(--lime); --hi-fg:var(--ink);
+  --fact:#1F6B45; --fact-bg:#E3F2EA; --assume:#8A5A00; --assume-bg:#FBF0D9; --validate:#32108B; --validate-bg:#ECE6FA; --gap:#6B6680; --gap-bg:#EFEDF3;
+  --display:"Space Grotesk",ui-sans-serif,system-ui,sans-serif; --body:"Inter",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:10px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141020; --surface:#1E1830; --surface-2:#271F3F; --fg:#F2EFF8; --muted:#A9A2BF; --line:#352C52;
+  --accent:#B9A3FF; --accent-fg:#141020; --hi:#D7FF45; --hi-fg:#191525;
+  --fact:#8FD9B0; --fact-bg:#1C3328; --assume:#F0C46A; --assume-bg:#3A2E14; --validate:#C9B8FF; --validate-bg:#2C2250; --gap:#B4AEC8; --gap-bg:#2A2638; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141020; --surface:#1E1830; --surface-2:#271F3F; --fg:#F2EFF8; --muted:#A9A2BF; --line:#352C52;
+  --accent:#B9A3FF; --accent-fg:#141020; --hi:#D7FF45; --hi-fg:#191525;
+  --fact:#8FD9B0; --fact-bg:#1C3328; --assume:#F0C46A; --assume-bg:#3A2E14; --validate:#C9B8FF; --validate-bg:#2C2250; --gap:#B4AEC8; --gap-bg:#2A2638; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:15px/1.6 var(--body);padding-inline:16px;padding-block:0 48px}
+.wrap{max-width:980px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.15;margin:0}
+a{color:var(--accent)}
+button,select,textarea,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--hi);outline-offset:2px}
+.label{font:600 12px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* brand bar */
+.bar{margin-top:16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px;border-radius:var(--r);
+  background:radial-gradient(circle,rgba(215,255,69,.18) 1.2px,transparent 1.4px) right 12px center/12px 12px no-repeat,
+             radial-gradient(circle,rgba(247,245,239,.10) 1px,transparent 1.2px) 0 0/10px 10px,
+             linear-gradient(120deg,#32108B 0%,#4A26B8 100%)}
+.wordmark{display:grid;gap:4px;color:#F7F5EF}
+.wordmark b{font:700 24px/1 var(--display);letter-spacing:-.02em}
+.wordmark b span{color:#D7FF45}
+.wordmark small{font:600 10px/1 var(--display);letter-spacing:.38em;text-transform:uppercase;color:#F7F5EF}
+.ver{font-size:12px;color:#CFC6EE}
+
+/* hero */
+.hero{position:relative;padding-block:44px 28px;display:grid;gap:14px;overflow:hidden}
+.hero h1{font-size:clamp(30px,5.4vw,52px);letter-spacing:-.02em;max-width:16ch}
+.hero h1 em{font-style:normal;background:linear-gradient(transparent 62%,var(--hi) 62%);color:var(--fg)}
+.hero p{max-width:60ch;color:var(--muted);margin:0;font-size:17px}
+.spark{position:absolute;right:-20px;top:24px;width:260px;height:180px;opacity:.9;pointer-events:none}
+@media (max-width:720px){.spark{display:none}}
+
+/* path cards */
+.paths{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-block:8px 28px}
+.path{all:unset;cursor:pointer;display:grid;gap:8px;padding:20px;border:2px solid var(--line);border-radius:var(--r);background:var(--surface)}
+.path:hover{border-color:var(--accent)}
+.path[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.path .k{font:700 13px/1 var(--display);color:var(--accent)}
+.path h2{font-size:22px}
+.path p{margin:0;color:var(--muted)}
+
+/* form */
+form{display:grid;gap:18px;padding:22px;border-radius:var(--r);background:var(--surface);border:1px solid var(--line)}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.field{display:grid;gap:6px;min-width:0}
+.field label{font-weight:600}
+.field small{color:var(--muted)}
+textarea,select,input[type=text]{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+textarea{min-height:120px;resize:vertical}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--bg);gap:2px}
+.seg button{border:0;background:none;padding:6px 14px;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-fg)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{border:0;border-radius:999px;padding:11px 20px;font-weight:600;cursor:pointer;background:var(--accent);color:var(--accent-fg)}
+.btn.hi{background:var(--hi);color:var(--hi-fg)}
+.btn.ghost{background:none;border:1px solid var(--line);color:var(--fg)}
+.btn:disabled{opacity:.55;cursor:default}
+.note{font-size:13px;color:var(--muted)}
+.status{font-size:14px}
+
+/* results */
+#results{margin-top:32px;display:grid;gap:16px}
+.res-head{display:grid;gap:10px;padding:22px;border-radius:var(--r);background:var(--purple);color:#F7F5EF}
+.res-head .label{color:#CFC6EE}
+.res-head h2{font-size:clamp(22px,3.4vw,30px)}
+.res-head p{margin:0;max-width:70ch}
+.example-flag{justify-self:start;background:var(--lime);color:var(--ink);font:600 12px/1 var(--body);padding:6px 10px;border-radius:999px;letter-spacing:.04em}
+.legend{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:6px;font:600 12px/1 var(--body);padding:5px 9px;border-radius:999px;white-space:nowrap}
+.t-fact,.t-evidence{color:var(--fact);background:var(--fact-bg)}
+.t-assumption,.t-inference{color:var(--assume);background:var(--assume-bg)}
+.t-validate,.t-unverified{color:var(--validate);background:var(--validate-bg)}
+.t-unavailable{color:var(--gap);background:var(--gap-bg)}
+.res-head .chip{background:rgba(255,255,255,.12);color:#F7F5EF}
+
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+details.sec{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);min-width:0}
+details.sec>summary{list-style:none;cursor:pointer;padding:16px 18px;display:grid;gap:4px}
+details.sec>summary::-webkit-details-marker{display:none}
+details.sec>summary h3{font-size:17px;display:flex;justify-content:space-between;gap:10px}
+details.sec>summary h3::after{content:"+";color:var(--muted);font-weight:500}
+details.sec[open]>summary h3::after{content:"\2212"}
+details.sec>summary p{margin:0;color:var(--muted);font-size:14px}
+.pts{list-style:none;margin:0;padding:0 18px 16px;display:grid;gap:10px}
+.pts li{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start}
+.pts li span.txt{min-width:0}
+
+.exp{background:var(--surface-2);border-radius:var(--r);padding:20px;display:grid;gap:12px}
+.exp dl{margin:0;display:grid;grid-template-columns:max-content 1fr;gap:8px 16px}
+.exp dt{font-weight:600}
+.exp dd{margin:0;min-width:0}
+@media (max-width:520px){.exp dl{grid-template-columns:1fr}.exp dt{margin-top:6px}}
+
+.prio{display:grid;gap:10px;counter-reset:p;margin:0;padding:0;list-style:none}
+.prio li{counter-increment:p;display:grid;grid-template-columns:34px 1fr;gap:12px;padding:14px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+.prio li::before{content:counter(p);font:700 18px/34px var(--display);text-align:center;width:34px;height:34px;border-radius:50%;background:var(--hi);color:var(--hi-fg)}
+.prio b{display:block}
+.prio span{color:var(--muted);font-size:14px}
+
+.qs{background:var(--surface);border:1px dashed var(--accent);border-radius:var(--r);padding:20px;display:grid;gap:12px}
+.qs ol{margin:0;padding-left:20px;display:grid;gap:6px}
+
+.boundary{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:grid;gap:6px;max-width:75ch}
+.fallback{padding:16px;border-radius:var(--r);background:var(--surface-2);display:grid;gap:10px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="bar">
+    <div class="wordmark" aria-label="BridgeLogics AI Skills"><b>Bridge<span>Logics</span></b><small>AI Skills</small></div>
+    <div class="ver">Product Discovery Coach · v0.1.0 beta</div>
+  </header>
+
+  <section class="hero">
+    <svg class="spark" viewBox="0 0 260 180" aria-hidden="true">
+      <defs><pattern id="dots" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="var(--line)"/></pattern></defs>
+      <rect x="40" y="10" width="200" height="150" fill="url(#dots)"/>
+      <path d="M20 140 C 80 140, 90 50, 150 50 S 220 30, 240 20" fill="none" stroke="var(--accent)" stroke-width="3"/>
+      <circle cx="20" cy="140" r="7" fill="var(--accent)"/><circle cx="150" cy="50" r="7" fill="var(--hi)" stroke="var(--accent)" stroke-width="2"/><circle cx="240" cy="20" r="7" fill="var(--accent)"/>
+      <path d="M150 28 v-12 M150 84 v-12 M128 50 h-12 M184 50 h-12" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <div class="label">Connect ideas. Spark possibilities.</div>
+    <h1>Turn product ideas into <em>clearer decisions</em>.</h1>
+    <p>Describe your idea or what you have already built. The coach separates what you know from what you are assuming, names the riskiest bet, and suggests the smallest test that could change your next decision.</p>
+  </section>
+
+  <div class="paths" role="group" aria-label="Choose a path">
+    <button class="path" id="pathA" type="button" aria-pressed="true" data-path="develop">
+      <span class="k">Path 1</span><h2>Develop my idea</h2>
+      <p>I have an idea and want help shaping it into something worth testing.</p>
+    </button>
+    <button class="path" id="pathB" type="button" aria-pressed="false" data-path="review">
+      <span class="k">Path 2</span><h2>Review my existing idea</h2>
+      <p>I have a concept, prototype, or product and want constructive, critical feedback.</p>
+    </button>
+  </div>
+
+  <form id="f" novalidate>
+    <div class="field">
+      <label for="idea" id="ideaLabel">Describe your idea in your own words</label>
+      <small id="ideaHint">What made you think of it? What problem does it solve, and for whom?</small>
+      <textarea id="idea" required placeholder="Example: Roommates keep arguing about chores. I want a simple way to split and track them fairly."></textarea>
+    </div>
+    <div class="row">
+      <div class="field">
+        <label for="who">Who is it for?</label>
+        <input type="text" id="who" placeholder="Say “not sure yet” if you don't know">
+      </div>
+      <div class="field">
+        <label for="exp">Your experience building products</label>
+        <select id="exp">
+          <option value="">Let the coach infer it</option>
+          <option value="new">New to product development</option>
+          <option value="some">Some experience</option>
+          <option value="experienced">Experienced product or business professional</option>
+        </select>
+      </div>
+    </div>
+    <div class="row" id="reviewFields" hidden>
+      <div class="field">
+        <label for="maturity">How far along is it?</label>
+        <select id="maturity">
+          <option value="">Not sure</option><option>Concept developed</option><option>Prototype created</option>
+          <option>MVP built</option><option>Pilot running</option><option>Product launched</option><option>Product being scaled</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="objective">What do you most want to learn?</label>
+        <input type="text" id="objective" placeholder="Biggest risks? Why adoption is slow? What to build next?">
+      </div>
+    </div>
+    <div class="field">
+      <label for="evidence">What evidence do you have so far? <span class="note">(optional)</span></label>
+      <small>Conversations, feedback, metrics, sign-ups, pilots. “None yet” is a fine answer.</small>
+      <textarea id="evidence" style="min-height:80px"></textarea>
+    </div>
+    <div class="actions">
+      <div class="seg" role="group" aria-label="Depth">
+        <button type="button" id="dQuick" aria-pressed="true" data-depth="quick">Quick review</button>
+        <button type="button" id="dDeep" aria-pressed="false" data-depth="deep">Deep dive</button>
+      </div>
+      <button class="btn hi" id="go" type="submit">Generate my brief</button>
+      <button class="btn ghost" id="stop" type="button" hidden>Stop</button>
+      <span class="status" id="status" role="status"></span>
+    </div>
+    <p class="note">Please leave out passwords, private customer data, and anything confidential. This is an AI tool; it can be wrong, and it does not replace talking to real customers.</p>
+    <div class="fallback" id="fallback" hidden>
+      <b>Run this in your own AI assistant</b>
+      <span class="note">The built-in coach is not available in this view. Copy a ready-made prompt with your answers and paste it into Claude or ChatGPT.</span>
+      <div class="actions"><button class="btn" type="button" id="copyPrompt">Copy prompt</button><span class="status" id="copyStatus" role="status"></span></div>
+    </div>
+  </form>
+
+  <section id="results" aria-live="polite"></section>
+
+  <footer class="boundary">
+    <span>BridgeLogics Product Discovery Coach uses a structured methodology developed by Keeya Wang-Jones, an experienced product and technology leader. This is an AI-guided product discovery experience. It does not include personal consulting or individual review by the author.</span>
+    <span>Results are generated with your own Claude account, under that platform's privacy terms. Nothing is sent to BridgeLogics or the author.</span>
+  </footer>
+</div>
+
+<script>
+(() => {
+  const $ = (s) => document.querySelector(s);
+  const state = { path: "develop", depth: "quick", last: null, ctl: null };
+
+  const TAGS = {
+    fact: "Known fact", assumption: "Assumption", validate: "To validate",
+    evidence: "Evidence reviewed", inference: "Reasonable inference", unverified: "Unverified assumption", unavailable: "Not available"
+  };
+
+  const SECTIONS = {
+    develop: ["Problem statement","Target customer","Current alternatives","Value proposition","Evidence available","Key assumptions","Major risks"],
+    review: ["Problem-solution alignment","Strengths","Gaps and concerns","Critical assumptions","Risks","Evidence quality"]
+  };
+
+  // Example shown at rest (fictional, clearly flagged)
+  const EXAMPLE = {
+    example: true, path: "develop", artifact: "Product Opportunity Brief",
+    title: "Fair chore splitting for shared flats",
+    summary: "An app that helps roommates split chores fairly and see who did what, aimed at reducing recurring arguments in shared housing.",
+    sections: [
+      { heading: "Problem statement", summary: "Roommates in shared flats struggle to agree on a fair split of chores, which leads to resentment and repeated arguments.",
+        points: [{tag:"fact",text:"The founder has experienced this in two flat-shares."},{tag:"assumption",text:"The pain is frequent and strong enough that people want a tool, not just a conversation."}] },
+      { heading: "Target customer", summary: "Students and young professionals in flats of 3 to 5 people.",
+        points: [{tag:"assumption",text:"One motivated roommate will drive adoption for the whole flat."},{tag:"validate",text:"Who installs first, and do the others follow?"}] },
+      { heading: "Current alternatives", summary: "A whiteboard rota, a group chat, a shared spreadsheet, or doing nothing.",
+        points: [{tag:"validate",text:"Existing chore apps were not researched. Check app stores before assuming the gap."},{tag:"assumption",text:"The real competitor is the group chat, which is free and already open."}] },
+      { heading: "Key assumptions", summary: "Ranked by impact if wrong and how little evidence exists.",
+        points: [{tag:"assumption",text:"All roommates will log chores consistently. (High impact, no evidence)"},{tag:"assumption",text:"Visible tracking reduces conflict rather than creating new arguments. (High impact, no evidence)"},{tag:"assumption",text:"People will pay. (Medium impact, untested)"}] },
+      { heading: "Major risks", summary: "Adoption across the whole flat, and tracking turning into scorekeeping.",
+        points: [{tag:"validate",text:"Does the 'scoreboard' effect make relationships worse?"}] }
+    ],
+    priorities: [],
+    experiment: {
+      hypothesis: "We believe flats with a recurring chore conflict will keep logging chores for two weeks because seeing the split feels fair.",
+      method: "Concierge test: set up a shared spreadsheet for five flats and send a weekly summary by hand. No app.",
+      success: "At least 3 of 5 flats still logging in week two, and members report fewer arguments.",
+      decision: "If it holds, prototype the summary view. If logging drops, explore a rotation-only tool instead."
+    },
+    next_steps: ["Ask eight people in shared flats how they handle chores today and what has failed.","Search app stores for chore apps and note why reviewers abandon them.","Run the two-week spreadsheet concierge test with five flats."],
+    questions: ["How often do these arguments happen in a typical month?","Would every roommate need to join for it to work?"]
+  };
+
+  // ---------- path and depth ----------
+  function setPath(p) {
+    state.path = p;
+    $("#pathA").setAttribute("aria-pressed", p === "develop");
+    $("#pathB").setAttribute("aria-pressed", p === "review");
+    $("#reviewFields").hidden = p !== "review";
+    $("#ideaLabel").textContent = p === "develop" ? "Describe your idea in your own words" : "What have you already developed?";
+    $("#ideaHint").textContent = p === "develop"
+      ? "What made you think of it? What problem does it solve, and for whom?"
+      : "Describe the concept, prototype, or product as it exists today: what it does, who uses it, how it works. Paste relevant excerpts rather than links.";
+    $("#go").textContent = p === "develop" ? "Generate my brief" : "Generate my review";
+  }
+  $("#pathA").onclick = () => setPath("develop");
+  $("#pathB").onclick = () => setPath("review");
+  for (const b of document.querySelectorAll(".seg button")) b.onclick = () => {
+    state.depth = b.dataset.depth;
+    for (const o of document.querySelectorAll(".seg button")) o.setAttribute("aria-pressed", o === b);
+  };
+
+  // ---------- prompt ----------
+  function inputs() {
+    return {
+      idea: $("#idea").value.trim(), who: $("#who").value.trim(), exp: $("#exp").value,
+      maturity: $("#maturity").value, objective: $("#objective").value.trim(), evidence: $("#evidence").value.trim(),
+      answers: ($("#answers") && $("#answers").value.trim()) || ""
+    };
+  }
+
+  function buildPrompt(v, forJson = true) {
+    const review = state.path === "review";
+    const artifact = review ? "Product Review and Opportunity Assessment" : "Product Opportunity Brief";
+    const tags = review ? "evidence | inference | unverified | unavailable" : "fact | assumption | validate";
+    const lines = [
+      "You are the BridgeLogics Product Discovery Coach, an AI product discovery coach. Methodology by Keeya Wang-Jones. You are not Keeya and never speak as her, never offer meetings, mentorship, investment, introductions, or any service from Keeya or BridgeLogics.",
+      "",
+      "Principles: problem before solution. Separate facts from assumptions. NEVER invent competitors, statistics, market sizes, quotes, or research; when something needs checking, say what to check. Do not flatter. Challenge weak reasoning respectfully. Prefer the smallest experiment that could change a decision; do not assume more building is the answer; recommend AI only if it truly fits. Do not give legal conclusions or claim IP protection; flag where a qualified legal, medical, financial, or regulatory expert is needed. No numeric scores. Only treat as evidence what the user actually reported below.",
+      "",
+      `Path: ${review ? "B, Review my existing idea. Respect work already done; do not send them back to basic ideation." : "A, Develop my idea. Move from idea to a clear, testable opportunity."}`,
+      `Depth: ${state.depth === "deep" ? "Deep dive: thorough, 3 to 5 points per section." : "Quick review: the highest-leverage points only, 1 to 3 points per section."}`,
+      `User experience level: ${v.exp || "infer from their writing, not job titles"}. ${v.exp === "new" ? "Use plain language and avoid jargon." : v.exp === "experienced" ? "Skip basics; examine evidence quality, differentiation, distribution, unit economics, execution risk where relevant." : ""}`,
+      "",
+      "USER INPUT",
+      `${review ? "What exists" : "Idea"}: ${v.idea}`,
+      `Who it is for: ${v.who || "(not given)"}`,
+      review ? `Maturity: ${v.maturity || "(not given; infer and say so)"}` : "",
+      review ? `Review objective: ${v.objective || "(broad review)"}` : "",
+      `Evidence so far: ${v.evidence || "(none given)"}`,
+      v.answers ? `Answers to earlier coaching questions: ${v.answers}` : "",
+      ""
+    ];
+    if (!forJson) {
+      lines.push(`Produce a concise ${artifact} with these sections: ${SECTIONS[state.path].join(", ")}, ${review ? "Top three priorities, " : ""}Validation experiment (hypothesis, method, success criteria, decision), Recommended next steps, and 2 to 3 questions that would most sharpen it. Label every point as one of: ${tags.replace(/ \| /g, ", ")}. Do not use em dashes.`);
+      return lines.filter(l => l !== "").join("\n");
+    }
+    lines.push(
+      `Write a ${artifact}. Reply with ONLY one JSON object, no prose, in this shape:`,
+      `{"artifact":"${artifact}","title":"short name for the idea (max 8 words)","summary":"2 sentences in the user's terms",` +
+      (review ? `"maturity":"one of: Concept developed, Prototype created, MVP built, Pilot running, Product launched, Product being scaled",` : "") +
+      `"sections":[{"heading":"...","summary":"one sentence","points":[{"tag":"${tags}","text":"one sentence"}]}],` +
+      (review ? `"priorities":[{"title":"...","why":"impact, risk, effort in one sentence"}],` : `"priorities":[],`) +
+      `"experiment":{"hypothesis":"We believe ... will ... because ...","method":"...","success":"specific threshold set in advance","decision":"what to do if it passes or fails"},` +
+      `"next_steps":["action the user can take on their own"],"questions":["question that would most sharpen this"]}`,
+      `Sections, in this order: ${SECTIONS[state.path].join(", ")}.` + (review ? " Exactly 3 priorities." : ""),
+      "3 next steps, 2 to 3 questions. Plain language, no em dashes, no markdown inside strings."
+    );
+    return lines.filter(l => l !== "").join("\n");
+  }
+
+  // ---------- render ----------
+  const esc = (s) => String(s ?? "").replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+  function chip(tag) { const t = TAGS[tag] ? tag : "unavailable"; return `<span class="chip t-${t}">${TAGS[t]}</span>`; }
+
+  function render(r) {
+    const review = r.path === "review";
+    const counts = {};
+    for (const s of r.sections || []) for (const p of s.points || []) counts[p.tag] = (counts[p.tag] || 0) + 1;
+    const legend = Object.keys(TAGS).filter(k => counts[k]).map(k => `<span class="chip">${counts[k]} × ${TAGS[k]}</span>`).join("");
+    const secs = (r.sections || []).map((s, i) => `
+      <details class="sec" ${i < 2 ? "open" : ""}>
+        <summary><h3>${esc(s.heading)}</h3><p>${esc(s.summary)}</p></summary>
+        <ul class="pts">${(s.points || []).map(p => `<li>${chip(p.tag)}<span class="txt">${esc(p.text)}</span></li>`).join("")}</ul>
+      </details>`).join("");
+    const prio = (r.priorities || []).length ? `
+      <div class="label">Top three priorities</div>
+      <ol class="prio">${r.priorities.map(p => `<li><div><b>${esc(p.title)}</b><span>${esc(p.why)}</span></div></li>`).join("")}</ol>` : "";
+    const e = r.experiment || {};
+    $("#results").innerHTML = `
+      <div class="res-head">
+        ${r.example ? '<span class="example-flag">EXAMPLE · fictional idea</span>' : ""}
+        <div class="label">${esc(r.artifact || "")}${r.maturity ? " · " + esc(r.maturity) : ""}</div>
+        <h2>${esc(r.title)}</h2>
+        <p>${esc(r.summary)}</p>
+        <div class="legend">${legend}</div>
+      </div>
+      ${prio}
+      <div class="exp">
+        <div class="label">Recommended validation experiment</div>
+        <dl>
+          <dt>Hypothesis</dt><dd>${esc(e.hypothesis)}</dd>
+          <dt>Method</dt><dd>${esc(e.method)}</dd>
+          <dt>Success looks like</dt><dd>${esc(e.success)}</dd>
+          <dt>Decision it informs</dt><dd>${esc(e.decision)}</dd>
+        </dl>
+      </div>
+      <div class="grid2">${secs}</div>
+      <div>
+        <div class="label" style="margin-bottom:10px">Recommended next steps</div>
+        <ol class="prio">${(r.next_steps || []).map(s => `<li><div>${esc(s)}</div></li>`).join("")}</ol>
+      </div>
+      ${r.example ? "" : `
+      <div class="qs">
+        <b>Sharpen this</b>
+        <span class="note">Answer any of these (or skip them) and regenerate. Unanswered questions stay marked as open.</span>
+        <ol>${(r.questions || []).map(q => `<li>${esc(q)}</li>`).join("")}</ol>
+        <div class="field"><label for="answers">Your answers</label><textarea id="answers" style="min-height:80px"></textarea></div>
+        <div class="actions">
+          <button class="btn" type="button" id="regen">Regenerate with my answers</button>
+          <button class="btn ghost" type="button" id="copyMd">Copy as Markdown</button>
+          <span class="status" id="mdStatus" role="status"></span>
+        </div>
+      </div>`}
+      ${r.example ? '<p class="note">This example shows the shape of a result. Describe your own idea above and generate yours.</p>' : ""}`;
+    if (!r.example) {
+      $("#regen").onclick = () => run();
+      $("#copyMd").onclick = () => copyText(toMarkdown(r), $("#mdStatus"));
+    }
+  }
+
+  function toMarkdown(r) {
+    const out = [`# ${r.artifact}: ${r.title}`, "", r.summary, ""];
+    if (r.maturity) out.push(`**Maturity:** ${r.maturity}`, "");
+    if ((r.priorities || []).length) { out.push("## Top three priorities"); r.priorities.forEach((p, i) => out.push(`${i + 1}. **${p.title}**: ${p.why}`)); out.push(""); }
+    for (const s of r.sections || []) { out.push(`## ${s.heading}`, s.summary); for (const p of s.points || []) out.push(`- *${TAGS[p.tag] || p.tag}:* ${p.text}`); out.push(""); }
+    const e = r.experiment || {};
+    out.push("## Validation experiment", `- Hypothesis: ${e.hypothesis}`, `- Method: ${e.method}`, `- Success: ${e.success}`, `- Decision: ${e.decision}`, "");
+    out.push("## Next steps"); (r.next_steps || []).forEach((s, i) => out.push(`${i + 1}. ${s}`));
+    out.push("", "## Open questions"); (r.questions || []).forEach(q => out.push(`- ${q}`));
+    out.push("", "_Generated by BridgeLogics Product Discovery Coach (AI). Not a substitute for customer research or professional advice._");
+    return out.join("\n");
+  }
+
+  async function copyText(text, statusEl) {
+    try { await navigator.clipboard.writeText(text); statusEl.textContent = "Copied."; }
+    catch { const t = document.createElement("textarea"); t.value = text; document.body.append(t); t.select(); statusEl.textContent = "Select all and copy (Ctrl or Cmd + C)."; setTimeout(() => t.remove(), 15000); }
+  }
+
+  // ---------- run ----------
+  let sample = null;
+  const ERR = {
+    not_granted: "Claude access was not allowed for this page. Use “Copy prompt” instead.",
+    sampling_disabled: "Claude is not available on this account. Use “Copy prompt” instead.",
+    rate_limited: "You have hit a usage limit. Wait a little and try again.",
+    session_expired: "Please sign in to Claude again, then retry.",
+    refused: "The coach could not answer this input. Try rephrasing the description.",
+    invalid_json: "The result came back in an unexpected format. Try again.",
+    empty_completion: "No result came back. Try a shorter description.",
+    prompt_too_large: "That is too much text. Shorten the description or evidence."
+  };
+
+  async function run() {
+    const v = inputs();
+    if (v.idea.length < 15) { $("#status").textContent = "Add a sentence or two describing it first."; $("#idea").focus(); return; }
+    if (!sample) { $("#fallback").hidden = false; $("#status").textContent = "Use “Copy prompt” below."; return; }
+    state.ctl = new AbortController();
+    $("#go").disabled = true; $("#stop").hidden = false;
+    $("#status").textContent = state.depth === "deep" ? "Thinking it through. A deep dive can take a minute or two." : "Thinking it through. This usually takes under a minute.";
+    try {
+      const r = await sample.json(buildPrompt(v), { signal: state.ctl.signal, cache: false, modelTier: state.depth === "deep" ? "complex" : "default" });
+      if (!r || !Array.isArray(r.sections)) throw { code: "invalid_json" };
+      r.path = state.path;
+      state.last = r; render(r);
+      $("#status").textContent = "Done. Scroll down to read your " + (state.path === "review" ? "review." : "brief.");
+      $("#results").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+    } catch (e) {
+      if (e && e.code === "cancelled") $("#status").textContent = "Stopped.";
+      else {
+        $("#status").textContent = ERR[e && e.code] || "Something went wrong reaching Claude. Try again.";
+        if (["not_granted","sampling_disabled","not_declared","capability_disabled"].includes(e && e.code)) { sample = null; $("#fallback").hidden = false; }
+      }
+    } finally { $("#go").disabled = false; $("#stop").hidden = true; }
+  }
+
+  $("#f").addEventListener("submit", (ev) => { ev.preventDefault(); run(); });
+  $("#stop").onclick = () => state.ctl && state.ctl.abort();
+  $("#copyPrompt").onclick = () => {
+    const v = inputs();
+    if (v.idea.length < 15) { $("#copyStatus").textContent = "Describe your idea first."; return; }
+    copyText(buildPrompt(v, false), $("#copyStatus"));
+  };
+
+  render(EXAMPLE);
+
+  // Light up Claude if this page runs inside a Claude viewer; otherwise offer the copy-prompt route.
+  if (window.claude && typeof window.claude.use === "function") {
+    window.claude.use("sample").then(s => { sample = s; if (!s) $("#fallback").hidden = false; }).catch(() => { $("#fallback").hidden = false; });
+  } else {
+    $("#fallback").hidden = false;
+  }
+})();
+</script>
+
+</body>
+</html>

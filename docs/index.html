@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Get Started · Product Discovery Coach</title>
+<meta name="description" content="Set up the BridgeLogics Product Discovery Coach in Claude, ChatGPT, or your browser, step by step.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: brand band, one-line promise, three route cards, then a single stepper panel for the chosen route */
+:root{
+  --purple:#32108B; --lime:#D7FF45; --ivory:#F7F5EF; --ink:#191525;
+  --bg:var(--ivory); --surface:#fff; --surface-2:#EEEBF5; --fg:var(--ink); --muted:#5B5670; --line:#DCD7E6;
+  --accent:var(--purple); --accent-fg:#fff; --ok:#1F6B45; --ok-bg:#E3F2EA; --warn:#8A5A00; --warn-bg:#FBF0D9;
+  --display:"Space Grotesk",ui-sans-serif,system-ui,sans-serif; --body:"Inter",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:10px;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#141020; --surface:#1E1830; --surface-2:#271F3F; --fg:#F2EFF8; --muted:#A9A2BF; --line:#352C52;
+  --accent:#B9A3FF; --accent-fg:#141020; --ok:#8FD9B0; --ok-bg:#1C3328; --warn:#F0C46A; --warn-bg:#3A2E14; color-scheme:dark}}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font:15px/1.6 var(--body);padding-inline:16px;padding-block:0 56px}
+.wrap{max-width:920px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);line-height:1.15;margin:0;text-wrap:balance}
+a{color:var(--accent)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--lime);outline-offset:2px}
+.label{font:600 12px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+.bar{margin-top:16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px;border-radius:var(--r);
+  background:radial-gradient(circle,rgba(247,245,239,.10) 1px,transparent 1.2px) 0 0/10px 10px,linear-gradient(120deg,#32108B 0%,#4A26B8 100%);color:#F7F5EF}
+.wordmark{display:grid;gap:4px}
+.wordmark b{font:700 24px/1 var(--display);letter-spacing:-.02em}
+.wordmark b span{color:#D7FF45}
+.wordmark small{font:600 10px/1 var(--display);letter-spacing:.38em;text-transform:uppercase}
+.bar a{color:#F7F5EF;font-size:14px}
+
+.hero{padding-block:36px 20px;display:grid;gap:10px}
+.hero h1{font-size:clamp(28px,5vw,44px);letter-spacing:-.02em}
+.hero h1 em{font-style:normal;background:linear-gradient(transparent 62%,var(--lime) 62%);color:var(--ink)}
+.hero p{margin:0;color:var(--muted);max-width:62ch;font-size:17px}
+
+.routes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-block:12px 24px}
+.route{all:unset;cursor:pointer;display:grid;gap:6px;padding:18px;border:2px solid var(--line);border-radius:var(--r);background:var(--surface)}
+.route:hover{border-color:var(--accent)}
+.route[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.route h2{font-size:19px}
+.route p{margin:0;color:var(--muted);font-size:14px}
+.route .meta{font-size:12px;color:var(--muted)}
+
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.progress{display:flex;gap:6px;padding:16px 20px 0}
+.progress span{flex:1;height:6px;border-radius:999px;background:var(--surface-2)}
+.progress span.done{background:var(--accent)}
+.progress span.now{background:var(--lime)}
+.step{padding:20px;display:grid;gap:14px}
+.step h3{font-size:22px}
+.step .body{display:grid;gap:10px;max-width:68ch}
+.step ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.path{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;background:var(--surface-2);padding:2px 6px;border-radius:5px;white-space:nowrap}
+.tip{border-radius:8px;padding:12px 14px;font-size:14px}
+.tip.warn{background:var(--warn-bg);color:var(--warn)}
+.tip.ok{background:var(--ok-bg);color:var(--ok)}
+.tip b{display:block;margin-bottom:2px}
+.copyrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.copybox{flex:1 1 280px;min-width:0;background:var(--surface-2);border-radius:8px;padding:10px 12px;font-size:14px}
+.btn{border:0;border-radius:999px;padding:10px 18px;font-weight:600;cursor:pointer;background:var(--accent);color:var(--accent-fg);text-decoration:none;display:inline-block}
+.btn.lime{background:var(--lime);color:var(--ink)}
+.btn.ghost{background:none;border:1px solid var(--line);color:var(--fg)}
+.btn:disabled{opacity:.5;cursor:default}
+.nav{display:flex;justify-content:space-between;gap:10px;padding:14px 20px;border-top:1px solid var(--line);background:var(--surface-2)}
+.status{font-size:13px;color:var(--muted)}
+
+/* The caption bar: same visual language as the QA walkthrough */
+.caption{background:#32108B;color:#F7F5EF;border-left:6px solid #D7FF45;border-radius:10px;padding:12px 16px}
+.caption b{color:#D7FF45;display:block}
+
+footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:grid;gap:6px;max-width:75ch}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="bar">
+    <div class="wordmark" aria-label="BridgeLogics AI Skills"><b>Bridge<span>Logics</span></b><small>AI Skills</small></div>
+    <a href="https://github.com/BridgeLogicsProjects/product-discovery-skill">View on GitHub</a>
+  </header>
+
+  <section class="hero">
+    <div class="label">Get started · Product Discovery Coach</div>
+    <h1>Pick where you work. <em>We'll walk you through it.</em></h1>
+    <p>An AI coach that helps you shape a new product idea or get a critical review of something you have built. Choose the tool you already use. Each route takes 2 to 5 minutes to set up.</p>
+  </section>
+
+  <div class="routes" role="group" aria-label="Choose your tool">
+    <button class="route" type="button" data-route="claude" aria-pressed="false">
+      <span class="label">Recommended</span><h2>Claude</h2>
+      <p>Install it once as a Claude Skill. Claude uses it whenever you ask about a product idea.</p>
+      <span class="meta">5 steps · about 3 minutes · Claude account</span>
+    </button>
+    <button class="route" type="button" data-route="chatgpt" aria-pressed="false">
+      <span class="label">ChatGPT</span><h2>ChatGPT</h2>
+      <p>Paste the coach into a ChatGPT Project so it's there every time you open it.</p>
+      <span class="meta">4 steps · about 2 minutes · ChatGPT account</span>
+    </button>
+    <button class="route" type="button" data-route="browser" aria-pressed="false">
+      <span class="label">No install</span><h2>Just try it</h2>
+      <p>Fill in a short form here, then copy a ready-made prompt into Claude or ChatGPT.</p>
+      <span class="meta">2 steps · 1 minute · either account</span>
+    </button>
+  </div>
+
+  <section class="panel" id="panel" aria-live="polite">
+    <div class="step">
+      <div class="caption"><b>Start here</b>Choose Claude, ChatGPT, or Just try it above. You can switch at any time.</div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Before you start: leave out passwords, private customer data, and anything confidential. Your chat is handled under Claude's or ChatGPT's own privacy terms. Nothing is sent to BridgeLogics.</span>
+    <span>BridgeLogics Product Discovery Coach uses a structured methodology developed by Keeya Wang-Jones, an experienced product and technology leader. This is an AI-guided product discovery experience. It does not include personal consulting or individual review by the author.</span>
+  </footer>
+</div>
+
+<script>
+(() => {
+  const REPO = 'https://github.com/BridgeLogicsProjects/product-discovery-skill'
+  const RAW = 'https://raw.githubusercontent.com/BridgeLogicsProjects/product-discovery-skill/main'
+  const ZIP = REPO + '/raw/main/dist/bridgelogics-product-discovery-skill.zip'
+
+  const copy = (id, text) => `<div class="copyrow"><div class="copybox" id="${id}">${text}</div><button class="btn ghost" type="button" data-copy="${id}">Copy</button></div>`
+
+  const ROUTES = {
+    claude: [
+      { title: 'Download the skill',
+        body: `<p>This is one ZIP file. You'll upload it to Claude in step 3.</p>
+          <p><a class="btn lime" href="${ZIP}">Download the skill (ZIP)</a></p>
+          <div class="tip warn"><b>On a Mac, Safari may unzip it for you.</b>If you see a folder called <span class="path">bridgelogics-product-discovery</span> instead of a ZIP, right-click that folder and choose <b style="display:inline">Compress "bridgelogics-product-discovery"</b>. Keep the name exactly as it is: it must match the skill's name.</div>`,
+        check: 'You have a file ending in .zip, not a folder.' },
+      { title: 'Turn on code execution',
+        body: `<p>Skills need one Claude setting switched on.</p>
+          <ol><li>Open <a href="https://claude.ai/settings/capabilities" target="_blank" rel="noopener">Settings &gt; Capabilities</a> in Claude.</li>
+          <li>Switch on <b>Code execution and file creation</b>.</li></ol>
+          <div class="tip warn"><b>On a Team or Enterprise plan?</b>Your admin may need to allow skills first.</div>`,
+        check: 'The "Code execution and file creation" switch is on.' },
+      { title: 'Upload the skill',
+        body: `<ol><li>Open <a href="https://claude.ai/customize/skills" target="_blank" rel="noopener">Customize &gt; Skills</a>.</li>
+          <li>Click <b>+</b>, then <b>Create skill</b>, then <b>Upload a skill</b>.</li>
+          <li>Choose the ZIP from step 1.</li></ol>
+          <div class="tip warn"><b>Upload failed?</b>Check it's the ZIP, not the folder, and that step 2 is done. Note the exact error message.</div>`,
+        check: '<b style="display:inline">bridgelogics-product-discovery</b> appears in your skills list.' },
+      { title: 'Switch it on',
+        body: `<p>Find <b>bridgelogics-product-discovery</b> in the list and make sure its toggle is on. That's the whole install. You only do steps 1 to 4 once.</p>`,
+        check: 'The toggle next to the skill is on.' },
+      { title: 'Use it',
+        body: `<p>Open a <a href="https://claude.ai/new" target="_blank" rel="noopener">new chat in Claude</a> and send this:</p>
+          ${copy('p-claude', "Use the BridgeLogics product discovery skill. I want to review a product I've already built.")}
+          <p>Or start a new idea: <i>"Use the BridgeLogics product discovery skill to help me develop an idea."</i></p>`,
+        check: 'Claude offers two paths, asks one or two questions at a time, and finishes with a written brief or review you can keep.' },
+    ],
+    chatgpt: [
+      { title: 'Copy the coach instructions',
+        body: `<p>The coach is a set of instructions you give ChatGPT once.</p>
+          <div class="copyrow"><button class="btn lime" type="button" id="copyInstr">Copy the instructions</button><span class="status" id="instrStatus"></span></div>
+          <p class="status">Prefer to read them first? <a href="${REPO}/blob/main/chatgpt/instructions.md" target="_blank" rel="noopener">Open instructions.md</a></p>`,
+        check: 'The instructions are on your clipboard.' },
+      { title: 'Create a ChatGPT Project',
+        body: `<ol><li>In ChatGPT's sidebar, create a <b>new project</b>.</li><li>Name it <b>Product Discovery Coach</b>.</li></ol>
+          <div class="tip warn"><b>No Projects on your plan?</b>Skip to step 4 and paste the instructions as your first message instead.</div>`,
+        check: 'An empty project called Product Discovery Coach is open.' },
+      { title: 'Paste into the project instructions',
+        body: `<ol><li>Open the project's settings and find <b>Instructions</b>.</li><li>Paste what you copied in step 1 and save.</li></ol>`,
+        check: 'The project instructions start with "You are BridgeLogics Product Discovery Coach".' },
+      { title: 'Start a chat',
+        body: `<p>Start a chat inside the project and send:</p>
+          ${copy('p-gpt', "Review a product I've already developed.")}
+          <p>Or: <i>"Help me develop a product idea."</i></p>`,
+        check: 'The coach offers two paths, asks focused questions, and finishes with a written brief or review.' },
+    ],
+    browser: [
+      { title: 'Describe your idea',
+        body: `<p>Open the coach page, pick a path, and fill in the short form.</p>
+          <p><a class="btn lime" href="coach.html" target="_blank" rel="noopener">Open the coach</a></p>
+          <p class="status">Outside Claude, the page can't run the AI itself, so it builds a ready-made prompt for you.</p>`,
+        check: 'You filled in at least the description.' },
+      { title: 'Copy the prompt into your AI',
+        body: `<ol><li>Click <b>Copy prompt</b> at the bottom of the form.</li><li>Paste it into a new chat in <a href="https://claude.ai/new" target="_blank" rel="noopener">Claude</a> or <a href="https://chatgpt.com/" target="_blank" rel="noopener">ChatGPT</a> and send.</li></ol>`,
+        check: 'You get a sectioned brief or review in one reply. For a back-and-forth coaching session, use the Claude or ChatGPT route.' },
+    ],
+  }
+
+  let route = null, idx = 0
+  const store = {
+    get(k) { try { return JSON.parse(localStorage.getItem(k)) } catch { return null } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)) } catch {} },
+  }
+
+  function render() {
+    const panel = document.getElementById('panel')
+    for (const b of document.querySelectorAll('.route')) b.setAttribute('aria-pressed', b.dataset.route === route)
+    if (!route) return
+    const steps = ROUTES[route], s = steps[idx]
+    panel.innerHTML = `
+      <div class="progress" aria-hidden="true">${steps.map((_, i) => `<span class="${i < idx ? 'done' : i === idx ? 'now' : ''}"></span>`).join('')}</div>
+      <div class="step">
+        <div class="label">Step ${idx + 1} of ${steps.length}</div>
+        <h3>${s.title}</h3>
+        <div class="body">${s.body}</div>
+        <div class="tip ok"><b>You should see</b>${s.check}</div>
+      </div>
+      <div class="nav">
+        <button class="btn ghost" type="button" id="back" ${idx === 0 ? 'disabled' : ''}>Back</button>
+        ${idx < steps.length - 1
+          ? '<button class="btn" type="button" id="next">Done, next step</button>'
+          : '<span class="status">You’re set up. Come back any time.</span>'}
+      </div>`
+    const back = document.getElementById('back'), next = document.getElementById('next')
+    if (back) back.onclick = () => go(idx - 1)
+    if (next) next.onclick = () => go(idx + 1)
+    for (const b of panel.querySelectorAll('[data-copy]')) b.onclick = () => copyText(document.getElementById(b.dataset.copy).textContent, b)
+    const ci = document.getElementById('copyInstr')
+    if (ci) ci.onclick = copyInstructions
+  }
+
+  function go(i) { idx = Math.max(0, Math.min(i, ROUTES[route].length - 1)); store.set('pd-' + route, idx); render(); document.getElementById('panel').scrollIntoView({ block: 'start', behavior: 'smooth' }) }
+
+  async function copyText(text, el) {
+    try { await navigator.clipboard.writeText(text); el.textContent = 'Copied' }
+    catch { el.textContent = 'Select and copy' }
+    setTimeout(() => { el.textContent = 'Copy' }, 2000)
+  }
+
+  async function copyInstructions() {
+    const st = document.getElementById('instrStatus')
+    st.textContent = 'Fetching…'
+    try {
+      const r = await fetch(RAW + '/chatgpt/instructions.md')
+      if (!r.ok) throw new Error()
+      await navigator.clipboard.writeText(await r.text())
+      st.textContent = 'Copied. Go to step 2.'
+    } catch {
+      st.innerHTML = 'Couldn’t copy automatically. <a href="' + RAW + '/chatgpt/instructions.md" target="_blank" rel="noopener">Open the raw text</a>, select all, and copy.'
+    }
+  }
+
+  for (const b of document.querySelectorAll('.route')) b.onclick = () => {
+    route = b.dataset.route; idx = store.get('pd-' + route) || 0
+    history.replaceState(null, '', '#' + route); render()
+  }
+  const h = location.hash.slice(1)
+  if (ROUTES[h]) { route = h; idx = store.get('pd-' + h) || 0; render() }
+})()
+</script>
+</body>
+</html>
