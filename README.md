@@ -16,9 +16,9 @@ Part of the **BridgeLogics AI Skills** collection. Version 0.1.0. Methodology by
 
 1. **Download** [`bridgelogics-product-discovery-skill.zip`](https://github.com/BridgeLogicsProjects/product-discovery-skill/raw/main/dist/bridgelogics-product-discovery-skill.zip). On a Mac, Safari may unzip it into a folder: right-click the `bridgelogics-product-discovery` folder and choose **Compress "bridgelogics-product-discovery"**. Keep the name exactly as it is.
 2. **Turn on code execution:** in Claude, **Settings > Capabilities > Code execution and file creation**.
-3. **Upload:** **Customize > Skills**, click **+**, then **Create skill**, then **Upload a skill**, and choose the ZIP.
+3. **Upload:** **Customize > Skills**, click **+ Add**, then **Upload skill**, choose the ZIP, and click **Upload**.
 4. **Switch it on:** make sure the toggle next to **bridgelogics-product-discovery** is on.
-5. **Use it:** in a new chat, send *"Use the BridgeLogics product discovery skill. I want to review a product I've already built."*
+5. **Use it:** in a new chat, type **/** and pick the skill, or send *"Use the BridgeLogics product discovery skill. I want to review a product I've already built."*
 
 You should see Claude offer two paths, ask one or two questions at a time, and finish with a written brief or review.
 
@@ -79,7 +79,7 @@ Every artifact separates what is known from what is assumed. Path A labels Known
 **Claude Skill (install once):**
 1. Download `dist/bridgelogics-product-discovery-skill.zip`. Keep it zipped.
 2. In Claude, turn on **Settings > Capabilities > Code execution and file creation**.
-3. Go to **Customize > Skills**, click **+**, then **Create skill**, then **Upload a skill**, and choose the ZIP.
+3. Go to **Customize > Skills**, click **+ Add**, then **Upload skill**, choose the ZIP, and click **Upload**.
 4. Toggle the skill on, start a new chat, and ask: "Use the BridgeLogics product discovery skill to review my product."
 
 **ChatGPT:** OpenAI no longer allows custom GPTs to be shared by link, and custom GPTs retire on 11 December 2026. Paste `chatgpt/instructions.md` into a ChatGPT Project's instructions (or as the first message of a chat) to run the same coach in your own account.
