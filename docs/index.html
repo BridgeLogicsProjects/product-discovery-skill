@@ -112,7 +112,7 @@ footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--line);font-si
     </button>
     <button class="route" type="button" data-route="browser" aria-pressed="false">
       <span class="label">No install</span><h2>Just try it</h2>
-      <p>Fill in a short form here, then copy a ready-made prompt into Claude or ChatGPT.</p>
+      <p>Fill in a short form and get a brief in one go. Live in Claude, or as a prompt to paste anywhere.</p>
       <span class="meta">2 steps · 1 minute · either account</span>
     </button>
   </div>
@@ -190,14 +190,17 @@ footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--line);font-si
         check: 'The coach offers two paths, asks focused questions, and finishes with a written brief or review.' },
     ],
     browser: [
-      { title: 'Describe your idea',
-        body: `<p>Open the coach page, pick a path, and fill in the short form.</p>
-          <p><a class="btn lime" href="coach.html" target="_blank" rel="noopener">Open the coach</a></p>
-          <p class="status">Outside Claude, the page can't run the AI itself, so it builds a ready-made prompt for you.</p>`,
-        check: 'You filled in at least the description.' },
-      { title: 'Copy the prompt into your AI',
-        body: `<ol><li>Click <b>Copy prompt</b> at the bottom of the form.</li><li>Paste it into a new chat in <a href="https://claude.ai/new" target="_blank" rel="noopener">Claude</a> or <a href="https://chatgpt.com/" target="_blank" rel="noopener">ChatGPT</a> and send.</li></ol>`,
-        check: 'You get a sectioned brief or review in one reply. For a back-and-forth coaching session, use the Claude or ChatGPT route.' },
+      { title: 'Open the coach',
+        body: `<p>Pick one. Both use the same short form: choose a path and describe your idea.</p>
+          <div class="copyrow"><a class="btn lime" href="https://claude.ai/artifact/5jpfpETWC8ouutdk9NpJpd" target="_blank" rel="noopener">Open the live coach in Claude</a></div>
+          <p class="status">Runs the AI right on the page with your own Claude account. Claude asks you once to allow it.</p>
+          <div class="copyrow"><a class="btn ghost" href="coach.html" target="_blank" rel="noopener">No Claude account? Open the paste version</a></div>
+          <p class="status">Builds a ready-made prompt you paste into ChatGPT or Claude.</p>`,
+        check: 'The coach page is open and you filled in at least the description.' },
+      { title: 'Get your brief',
+        body: `<p><b>Live coach in Claude:</b> click <b>Generate my brief</b> (or <b>Generate my review</b>). Answer the "Sharpen this" questions and regenerate to improve it.</p>
+          <p><b>Paste version:</b> click <b>Copy prompt</b>, then paste it into a new chat in <a href="https://claude.ai/new" target="_blank" rel="noopener">Claude</a> or <a href="https://chatgpt.com/" target="_blank" rel="noopener">ChatGPT</a> and send.</p>`,
+        check: 'A brief or review in clear sections, with each point labelled as fact, assumption, or to validate. For a back-and-forth coaching session, use the Claude or ChatGPT route.' },
     ],
   }
 
