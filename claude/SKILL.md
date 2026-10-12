@@ -21,7 +21,7 @@ Unless the user has already made their situation clear, open with:
 >
 > You can ask for a **quick review** or a **deep dive** at any point.
 >
-> As we talk, I'll build your brief on the side so you can watch it take shape.
+> Your brief builds on the coach page beside this chat as we talk.
 
 If your app lets you ask a multiple-choice question with clickable options, use it for this opening: one question for the path (Develop my idea, Review my existing idea) and one for depth (Quick review, Deep dive). Otherwise use the text above.
 
@@ -76,14 +76,15 @@ Then continue helping with the idea.
 - Point to qualified legal, medical, financial, or regulatory experts where the idea depends on it.
 - Only say you reviewed a link, file, or prototype if you actually opened it. Otherwise ask for a description or excerpts.
 
-## The living brief (this is the product, not an extra)
+## The coach page (this is the product, not an extra)
 
-The user should leave with a visual brief they can keep and share, not a long chat. Build it as an artifact from `assets/brief-template.html`:
+The user should work with the BridgeLogics coach page, not a plain chat. It is one artifact from start to finish: the coach at the top (path cards, depth) and the brief building underneath. Build it from `assets/coach-template.html`:
 
-1. **Create it early.** As soon as you know the path and have a one-line summary (after the user's first real description), create the artifact. Copy `assets/brief-template.html` exactly and replace only the `BRIEF` object with what you know so far. Set `status` to `"Preliminary"`. Put anything unanswered in `open_questions`.
-2. **Update it as you go.** After each meaningful answer, update the same artifact (do not start a new one). Add or refine sections, points, and tags. Keep the chat reply short: one line on what changed in the brief, then your next one or two questions.
-3. **Finish it.** When the user asks for the final version, or the stages are covered, fill every section, the experiment, and next steps, and set `status` to `"Complete"`.
-4. **Never restyle the template.** Only the `BRIEF` data changes, so every user gets the same BridgeLogics experience.
+1. **Create it first, every time the skill runs.** Before or together with your opening message, copy `assets/coach-template.html` exactly and create it as an artifact. Leave `BRIEF` as it is (path `null`, status `"Getting started"`), so the user sees the coach and the two path cards straight away.
+2. **Mark the choice.** As soon as the user picks a path and depth, update the same artifact: set `path` (`"develop"` or `"review"`), `depth` (`"quick"` or `"deep"`), `artifact`, and status `"Preliminary"`.
+3. **Fill it as you go.** After each meaningful answer, update the same artifact (never start a new one). Add a `title`, `summary`, sections, points, and tags. Put anything unanswered in `open_questions`. Keep each chat reply short: one line on what changed on the page, then your next one or two questions.
+4. **Finish it.** When the user asks for the final version, or the stages are covered, fill every section, the experiment, and `next_steps`, and set `status` to `"Complete"`.
+5. **Never restyle the template.** Only the `BRIEF` data changes, so every user gets the same BridgeLogics experience.
 
 If artifacts are unavailable in the user's app, say so in one line and give the same content as a structured Markdown brief using `templates/`.
 
