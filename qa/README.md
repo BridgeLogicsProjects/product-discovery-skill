@@ -18,7 +18,7 @@ cd ~/03-bridgelogicsapps/product-discovery-skill/qa
 npm run setup
 ```
 
-For journeys 3 and 4, save a sign-in once. A real Chrome window opens: sign in yourself, wait until you see your chats, then close the window.
+For journeys 3 and 4, save a sign-in once. A real Chrome window opens: sign in yourself. As soon as the chat screen appears, the sign-in is saved and the window closes on its own. A separate test account (for example a free ChatGPT account) keeps test chats out of your real history.
 
 ```bash
 npm run auth:chatgpt

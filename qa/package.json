@@ -4,8 +4,8 @@
   "description": "Watchable end-to-end QA for the BridgeLogics Product Discovery Coach",
   "scripts": {
     "setup": "npm install && npx playwright install chromium",
-    "auth:chatgpt": "npx playwright open --channel chrome --save-storage=auth/chatgpt.json https://chatgpt.com",
-    "auth:claude": "npx playwright open --channel chrome --save-storage=auth/claude.json https://claude.ai",
+    "auth:chatgpt": "node scripts/save-auth.js chatgpt",
+    "auth:claude": "node scripts/save-auth.js claude",
     "test:portfolio": "playwright test 01-portfolio",
     "test:github": "playwright test 02-github",
     "test:chatgpt": "playwright test 03-chatgpt",
