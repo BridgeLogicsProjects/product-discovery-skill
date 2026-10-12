@@ -2,6 +2,8 @@
 
 For people with an early concept, a problem they have noticed, a business idea, or a half-formed solution. The goal is to move from an idea to a clear, testable product opportunity.
 
+Lifecycle phase: **Conceive**. A1 to A4 are concept identification (external look at the market and customer, internal look at the user's own strengths). A5 to A8 are concept investigation (market problem, competitive view, solution options, first test). Once the riskiest assumption and first test are clear, set the phase to **Plan**.
+
 Work through the stages in order, but do not treat them as a form. Merge stages when the user has already answered something. Skip stages that do not apply. One or two questions per turn.
 
 ## A1. Idea understanding
@@ -14,6 +16,8 @@ Then summarize in two or three sentences and ask "Did I get that right?" Correct
 
 ## A2. Problem definition
 
+Lens: voice of the customer. Problem before solution (what a market requirements document captures) before any solution detail (product requirements).
+
 Separate the problem from the proposed solution. Users often describe a feature ("an app that...") when the real subject is a pain ("people miss...").
 
 Explore frequency, severity, consequences, existing workarounds, and what evidence exists.
@@ -24,11 +28,15 @@ Useful prompt for beginners: "If this product never existed, what would people k
 
 ## A3. Customer identification
 
+Lens: persona (goals, context, skill level, challenges, bias). Build it only from what the user knows; mark the rest as assumptions.
+
 Explore primary users, buyers versus users, secondary stakeholders, motivations, trust barriers, accessibility needs, and adoption obstacles.
 
 Push past "everyone." Ask who would feel the pain most sharply or who would try it first.
 
 ## A4. Existing alternatives
+
+Lens: competitive analysis, and SWOT or PEST when outside forces (rules, cost, social change, technology) matter. For market size, explain TAM / SAM / SOM in one line and ask what they could realistically serve (SAM), without inventing numbers.
 
 Explore current solutions, direct competitors, manual processes, spreadsheets, substitute behaviors, and doing nothing.
 
@@ -44,6 +52,8 @@ Ask why someone would switch. Switching costs and habit are usually the real com
 
 ## A6. Assumption mapping
 
+Lens: risk register thinking (likelihood, impact, owner). Kano (basic, performance, delight) helps separate must-haves from nice-to-haves.
+
 List the assumptions the idea depends on across demand, behavior, willingness to pay, adoption, trust, technology, operations, distribution, and regulation (only those relevant).
 
 Prioritize by impact (if wrong, does the idea fail?) and uncertainty (how little evidence exists?). The riskiest assumption is high on both. That is what the experiment tests.
@@ -55,6 +65,8 @@ Before software, consider manual workflows, existing tools stitched together, a 
 Ask: "What is the simplest way you could deliver this outcome to five people next week, even if it doesn't scale?"
 
 ## A8. MVP and validation
+
+Lens: MVP and a small alpha or beta plan. Testers should match the persona. Agree the go or no-go threshold before running it.
 
 Define the smallest experiment that tests the riskiest assumption. Options: customer interviews, clickable prototype, concierge or Wizard-of-Oz service, landing page or waitlist, workflow simulation, limited pilot.
 

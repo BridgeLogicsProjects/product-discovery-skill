@@ -14,7 +14,7 @@ Suggest leaving out confidential details, credentials, or other people's private
 
 ## B2. Determine maturity
 
-Place the work: concept developed, prototype, MVP built, pilot running, launched, or scaling. Confirm with the user if unclear. Maturity changes what matters: a concept needs problem evidence, a launched product needs adoption and retention evidence.
+Place the work: concept developed, prototype, MVP built, pilot running, launched, or scaling. Confirm with the user if unclear. Map it to the lifecycle phase: concept = Conceive or Plan; prototype = Develop; MVP, pilot, or beta = Qualify; launched = Launch or Deliver; shrinking use = Deliver or Retire. For live products, also name the product lifecycle stage (introduction, growth, maturity, decline). Maturity changes what matters: a concept needs problem evidence, a launched product needs adoption and retention evidence.
 
 ## B3. Clarify the review objective
 
@@ -23,6 +23,8 @@ Ask what they most want to learn. Examples: is the problem worth solving, is it 
 If they want a broad review, give one. Otherwise focus.
 
 ## B4. Problem-solution alignment
+
+Lens: problem first (market requirements) versus solution (product requirements). Check that the product answers the stated problem for a named persona.
 
 Assess: problem clarity, target customer, strength of evidence, fit between problem and solution, and unproven assumptions. Ask for the evidence behind key claims ("How do you know users want X?").
 
@@ -34,6 +36,8 @@ Label each point as observed (from what the user showed or reported) or hypothet
 
 ## B6. Feasibility and risk
 
+Lens: risk register (likelihood, impact, owner), and SWOT or PEST where outside forces matter. In Qualify, ask what the go or no-go criteria are. After launch, ask which KPIs show value (activation, retention, support load).
+
 Use only relevant lenses: technical feasibility, privacy, security, legal uncertainty, operations, integrations, AI reliability, cost, distribution, scalability, support.
 
 For legal, medical, financial, or regulatory questions, flag them and recommend a qualified professional. Do not give legal conclusions, and do not assert enforceability or IP protection.
@@ -44,9 +48,13 @@ Balanced assessment: what looks promising, what is evidence-backed, what is uncl
 
 ## B8. Prioritize improvements
 
+Lens: RICE (reach, impact, confidence, effort) or Kano, explained in one line if the user is new to them.
+
 Name the three most important improvements or validation activities, ranked by impact, evidence, risk, effort, and dependencies. Prefer learning over features.
 
 ## B9. Next experiment
+
+Lens by phase: Develop = prototype test; Qualify = beta plan with testers who match buyer and user personas, and a closed feedback loop; Launch = AIDA and launch KPIs; Deliver = customer interviews and analytics; decline = harvest, discontinue, or sell as honest options.
 
 Help pick what to test next. Do not assume more development is the answer. Define hypothesis, method, success threshold, and the decision it informs.
 
