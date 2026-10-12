@@ -70,6 +70,11 @@ footer{font-size:12px;color:var(--muted)}
 .pill{border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:13px}
 .pill.on{background:var(--purple);border-color:var(--purple);color:#fff}
 .hint{font-size:14px;color:var(--muted)}
+.arch{display:grid;gap:8px}
+.arch details summary{padding:12px 14px}
+.arch .inner{padding:0 14px 14px;display:grid;gap:8px;font-size:14px}
+.arch .inner ul{margin:0;padding-left:18px}
+.tip{font-size:13px;color:var(--muted)}
 .empty{border:1px dashed var(--line);border-radius:10px;padding:22px;text-align:center;color:var(--muted);background:var(--surface)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .path .k{color:#C9B8FF}:root:not([data-theme="light"]) .path.on{border-color:#C9B8FF;box-shadow:inset 0 0 0 1px #C9B8FF}}
 </style>
@@ -90,7 +95,8 @@ const BRIEF = {
   priorities: [],                                 // Path B: [{ title, why }]
   experiment: { hypothesis: "", method: "", success: "", decision: "" },
   next_steps: [],
-  open_questions: []
+  open_questions: [],
+  archive: []                                     // earlier briefs: [{ label, date, brief }] newest first; brief is a full copy without its own archive
 };
 /* Tags. Path A: fact | assumption | validate. Path B: evidence | inference | unverified | unavailable. */
 /* ========================================================================= */
@@ -105,6 +111,13 @@ function render(b) {
   for (const s of b.sections || []) for (const p of s.points || []) counts[p.tag] = (counts[p.tag] || 0) + 1
   const e = b.experiment || {}
   const hasExp = e.hypothesis || e.method
+  const archive = (b.archive || []).length ? `<section class="arch"><div class="label">Earlier briefs</div>${b.archive.map(a => {
+      const x = a.brief || {}
+      const pts = (x.sections || []).flatMap(s => (s.points || []).map(p => `<li>${esc(TAGS[p.tag] || "Note")}: ${esc(p.text)}</li>`)).slice(0, 12).join("")
+      return `<details><summary><h3>${esc(a.label || x.title || "Earlier brief")}</h3><p>${esc(a.date || "")}${x.status ? " · " + esc(x.status) : ""}${x.artifact ? " · " + esc(x.artifact) : ""}</p></summary>
+        <div class="inner"><p>${esc(x.summary)}</p>${pts ? `<ul>${pts}</ul>` : ""}${x.experiment && x.experiment.hypothesis ? `<p><b>Experiment:</b> ${esc(x.experiment.hypothesis)}</p>` : ""}</div></details>`
+    }).join("")}</section>` : ""
+  const tip = `<p class="tip">Say <b>start over</b> in the chat to begin a new brief (this one moves to Earlier briefs), <b>keep going</b> to refine it, or <b>bring back</b> an earlier brief.</p>`
   const card = (key, n, title, text) => `<div class="path ${b.path ? (b.path === key ? "on" : "off") : ""}"><span class="k">Path ${n}</span><h3>${title}</h3><p>${text}</p></div>`
   const coach = `
   <div class="band"><div class="wm" aria-label="BridgeLogics AI Skills"><img src="https://bridgelogicsprojects.github.io/product-discovery-skill/img/bridgelogics-wordmark-on-dark.png" alt="BridgeLogics" height="38" style="display:block;height:38px;width:auto" onerror="this.remove();document.querySelectorAll(\'.wm b\').forEach(e=>e.hidden=false)"><b hidden>Bridge<span>Logics</span></b><small>AI SKILLS</small></div><span class="v">Product Discovery Coach · v0.1.1</span></div>
@@ -115,7 +128,7 @@ function render(b) {
   <div class="depth"><span class="label">Depth</span><span class="pill ${b.depth === "quick" ? "on" : ""}">Quick review</span><span class="pill ${b.depth === "deep" ? "on" : ""}">Deep dive</span>
     ${b.path ? "" : '<span class="hint">Choose a path in the chat to begin.</span>'}</div>`
   if (!(b.sections || []).length && !b.title) {
-    document.getElementById("app").innerHTML = coach + `<div class="empty">Your brief will appear here as we talk.</div>
+    document.getElementById("app").innerHTML = coach + `<div class="empty">Your brief will appear here as we talk.</div>${archive}
     <footer>AI-guided coaching from the BridgeLogics Product Discovery Coach, a methodology by Keeya Wang-Jones. It does not include personal review by the author. Please leave out anything confidential.</footer>`
     return
   }
@@ -138,6 +151,8 @@ function render(b) {
   ${(b.next_steps || []).length ? `<div class="label">Next steps you can take</div><ol class="num">${b.next_steps.map(s => `<li><div>${esc(s)}</div></li>`).join("")}</ol>` : ""}
   ${(b.open_questions || []).length ? `<section class="open"><b>Still open</b><ul>${b.open_questions.map(q => `<li>${esc(q)}</li>`).join("")}</ul></section>` : ""}
   <div class="actions"><button type="button" id="md">Copy as Markdown</button><span id="st" class="label"></span></div>
+  ${tip}
+  ${archive}
   <footer>AI-guided output from the BridgeLogics Product Discovery Coach, a methodology by Keeya Wang-Jones. Not a substitute for customer research or professional advice. It does not include personal review by the author.</footer>`
   document.getElementById("md").onclick = async () => {
     const out = [`# ${b.artifact}: ${b.title}`, "", `Status: ${b.status}`, "", b.summary, ""]
