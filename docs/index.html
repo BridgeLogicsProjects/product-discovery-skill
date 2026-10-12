@@ -152,7 +152,7 @@ footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--line);font-si
           <div class="tip warn"><b>On a Team or Enterprise plan?</b>Your admin may need to allow skills first.</div>`,
         check: 'The "Code execution and file creation" switch is on.' },
       { title: 'Upload the skill',
-        body: `<ol><li>Open <a href="https://claude.ai/customize/skills" target="_blank" rel="noopener">Customize &gt; Skills</a>. (Older menus said Settings &gt; Skills; it has moved.)</li>
+        body: `<ol><li>Open <a href="https://claude.ai/customize/skills" target="_blank" rel="noopener">Customize &gt; Skills</a>.</li>
           <li>Click <b>+ Add</b>, then <b>Upload skill</b>.</li>
           <li>Choose the ZIP from step 1. Check the preview says <b>bridgelogics-product-discovery</b>, then click <b>Upload</b>. A short security scan runs.</li></ol>
           <figure class="shot small"><img src="img/claude-add-menu.png" alt="The Add menu with Upload skill at the top" loading="lazy"><figcaption>Click + Add, then Upload skill.</figcaption></figure>
@@ -164,12 +164,18 @@ footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--line);font-si
           <figure class="shot "><img src="img/claude-skill-page.png" alt="The installed skill page with Share, Try in chat, and an on toggle" loading="lazy"><figcaption>Toggle on. "Try in chat" opens a new chat with the skill ready.</figcaption></figure>`,
         check: 'The toggle next to the skill is on.' },
       { title: 'Use it',
-        body: `<p>Open a <a href="https://claude.ai/new" target="_blank" rel="noopener">new chat in Claude</a>. Type <b>/</b> and pick <b>bridgelogics-product-discovery</b>, then say what you need. Or just send this:</p>
+        body: `<p>Open a <a href="https://claude.ai/new" target="_blank" rel="noopener">new chat in Claude</a> and start the skill in one of three ways:</p>
+          <ol><li>Click <b>+</b> in the message box, then <b>Skills</b>, then <b>bridgelogics-product-discovery</b>.</li>
+          <li>Or type <b>/</b> and pick <b>bridgelogics-product-discovery</b>.</li>
+          <li>Or just send the message below.</li></ol>`
+          +`<figure class="shot"><img src="img/claude-skills-menu.png" alt="The + menu in the Claude message box with Skills open and bridgelogics-product-discovery highlighted" loading="lazy"><figcaption>+ then Skills. Your list will show your own skills; pick bridgelogics-product-discovery.</figcaption></figure>`
+          +`
           ${copy('p-claude', "Use the BridgeLogics product discovery skill. I want to review a product I've already built.")}
           <figure class="shot "><img src="img/claude-slash-command.png" alt="The chat box with /bridgelogics-product-discovery typed before the request" loading="lazy"><figcaption>Typing / lets you pick the skill by name.</figcaption></figure>
           <div class="tip warn"><b>No need to attach the ZIP to your chat.</b>Once uploaded in step 3, the skill is always available.</div>
+          <div class="tip ok"><b>Want to try another idea or start fresh?</b>Say <i>start over</i>. Your current brief moves to <b>Earlier briefs</b> on the same page, and the coach begins again. Say <i>keep going</i> to keep refining, or <i>bring back</i> to reopen an earlier brief.</div>
           <figure class="shot "><img src="img/claude-first-reply.png" alt="Claude reading the skill and choosing Path 2: Review my existing idea" loading="lazy"><figcaption>A good first reply: it picks a path, asks one focused question, and reminds you what not to share.</figcaption></figure>`,
-        check: 'Claude offers two paths and asks one or two questions at a time. After your first answer, your brief opens on the side and fills in as you talk. At the end it is marked Complete, ready to copy or share.' },
+        check: 'The BridgeLogics coach page opens beside the chat with the two paths. As you answer, your brief fills in on that page. At the end it is marked Complete, ready to copy or share.' },
     ],
     chatgpt: [
       { title: 'Copy the coach instructions',
