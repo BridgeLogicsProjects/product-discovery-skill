@@ -2,7 +2,7 @@
 
 Thank you for testing. The quickest way in is the step-by-step setup guide: https://bridgelogicsprojects.github.io/product-discovery-skill/ The coach is an AI-guided, self-service tool. Nobody reviews your answers. Please leave out anything confidential.
 
-Use a real or realistic product idea. For the review path, a concept, prototype, or live product works best. Each test takes 10 to 20 minutes.
+Use a real or realistic product idea. For the review path, a concept, prototype, or live product works best. A quick review gives you a first brief right away. A deep dive asks a few more questions first.
 
 There are four ways in. Try the ones you were asked to test, then fill in the feedback form (`beta/feedback-form.md`, about 3 minutes).
 

@@ -11,7 +11,7 @@ It's a self-service AI coach. You describe what you've built, and it reviews it 
 Start here and pick whichever you already use, Claude or ChatGPT:
 https://bridgelogicsprojects.github.io/product-discovery-skill/
 
-Then choose "Review my existing idea" and describe your product in your own words. A session takes about 15 to 20 minutes. Please leave out anything confidential.
+Then choose "Review my existing idea" and describe your product in your own words. You get a first brief right away. Keep going if you want to sharpen it. Please leave out anything confidential.
 
 Afterwards, could you reply here with quick answers to these? About 3 minutes:
 https://github.com/BridgeLogicsProjects/product-discovery-skill/blob/main/beta/feedback-form.md
